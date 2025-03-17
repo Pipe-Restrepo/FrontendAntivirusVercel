@@ -10,3 +10,24 @@ body {
     color-scheme: dark;
   }
 }
+
+.search-label {
+  border-width: 1px;
+  border-color: rgb(218, 222, 226); 
+  background-color: #dadee2;
+  
+  
+}
+
+.search-select {
+  @apply w-full md:w-auto;
+  margin-right: 1rem;
+  border-color: rgb(218, 222, 226);
+}
+
+.search-button {
+  border-width: 1px;
+  border-radius: 0.375rem;
+  width: 7rem;
+  margin-right: 1rem;
+}
