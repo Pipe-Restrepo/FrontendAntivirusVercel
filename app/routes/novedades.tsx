@@ -1,5 +1,5 @@
 import Carousel from "~/components/CarouselNews";
-import Navbar from "~/components/Navbar";
+
 import OpportunityCard from "~/components/OpportunityCard";
 
 export default function Novedades() {
@@ -37,7 +37,7 @@ export default function Novedades() {
 
   return (
     <>
-      <Navbar></Navbar>
+      
       <div className="flex flex-col gap-7 items-center justify-center p-px sp ">
         <h1 className="text-5xl font-bold p-8">NOVEDADES</h1>
         <div className="relative flex justify-center  w-3/4 h-60">
