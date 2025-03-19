@@ -41,7 +41,7 @@ export default function OpportunityCard({opportunity} : {opportunity : Opportuni
            role="button"
            tabIndex={0}
         >          
-          <div className="flex justify-between mb-3"><h3 className="text-xl font-bold">Universidad de Antioquia</h3>
+          <div className="relative mb-3 flex flex-wrap justify-between items-start"><h3 className="text-xl font-bold">Universidad de Antioquia</h3>
           {/*se agrega el boton favorito */}
           <button 
           onClick={(e) => {
