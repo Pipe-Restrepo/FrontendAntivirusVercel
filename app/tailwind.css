@@ -4,10 +4,20 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-[#FAFAFA] dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
+  }
+}
+h1 {
+  color: #1D1856;
+  font-family: "Raleway" ;
+  font-size: 5.3rem;
+}
+@media (prefers-color-scheme: dark) {
+  h1 {
+    color: white; /* Blanco para modo oscuro */
   }
 }
 
@@ -15,8 +25,6 @@ body {
   border-width: 1px;
   border-color: rgb(218, 222, 226); 
   background-color: #dadee2;
-  
-  
 }
 
 .search-select {
