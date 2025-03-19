@@ -1,5 +1,5 @@
 import { useActionData, useNavigation, Form } from "@remix-run/react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Header";
 import { json, LoaderFunction, redirect } from "@remix-run/node";
 import { FaKey, FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
@@ -64,7 +64,7 @@ export default function Login (){
         <div>
             <Navbar></Navbar>     
             <div className="flex min-h-screen items-center justify-center bg-gray-100">
-                <div className="flex w-full max-w-4xl bg-white overflow-hidden -translate-y-10">
+                <div className="flex w-full max-w-4xl bg-white overflow-hidden translate-y-20">
                     {/* Sección de la imagen */}
                     <div className="hidden md:flex items-center justify-center bg-[#f3f4f6] w-1/2">
                     <img

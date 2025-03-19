@@ -5,6 +5,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import Header from "~/components/Header";  // Importar el Header
+import Footer from "~/components/Footer";  // Importar el Footer
 import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
@@ -41,5 +43,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      {/* Aquí va el header */}
+      <Header />
+
+      {/* Aquí va el contenido de cada ruta */}
+      <Outlet />
+
+      {/* Aquí va el footer */}
+      <Footer />
+
+      <ScrollRestoration />
+      <Scripts />
+    </>
+  );
 }
