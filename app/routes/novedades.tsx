@@ -8,7 +8,7 @@ import OpportunityCard from "~/components/OpportunityCard";
 export default function Novedades() {
   return (
     <>
-      <div className="flex flex-col gap-7 items-center justify-center p-px sp ">
+      <div className="flex flex-col gap-7 items-center justify-center p-px sp translate-y-40">
         <h1 className="text-5xl font-bold p-8">NOVEDADES</h1>
         <div className="relative flex justify-center  w-3/4 h-64">
           
