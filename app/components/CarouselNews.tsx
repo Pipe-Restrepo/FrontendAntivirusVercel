@@ -27,7 +27,7 @@ export default function Carousel() {
       slidesPerView={"auto"}
       navigation
       pagination={{ clickable: true }}
-      autoplay={{ delay: 3000 }}
+      autoplay={{ delay: 3000, disableOnInteraction: false }}
       effect="coverflow"
       grabCursor={true}
         centeredSlides={true}
@@ -44,7 +44,7 @@ export default function Carousel() {
       {items.map((Item, index) => (
         <SwiperSlide key={index} >
           <div className=" flex h-full justify-center rounded-xl">
-          <img src={Item.img} alt={`Slide ${index + 1}`} className=" w-auto h-full rounded-2xl object-fill" />
+          <img src={Item.img} alt={`Slide ${index + 1}`} className="border-2 w-auto h-full rounded-2xl object-fill" />
           </div>
         </SwiperSlide>
       ))}
