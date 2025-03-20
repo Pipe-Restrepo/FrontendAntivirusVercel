@@ -1,8 +1,15 @@
-import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from "@remix-run/react";
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "@remix-run/react";
 import Header from "~/components/Header";  // Importar el Header
 import Footer from "~/components/Footer";  // Importar el Footer
-import styles from"./tailwind.css";
-import { LinksFunction } from "@remix-run/node";
+import type { LinksFunction } from "@remix-run/node";
+
+import "./tailwind.css";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -15,8 +22,6 @@ export const links: LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
-
-  {rel: "stylesheet", href: styles}
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -39,25 +44,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <html lang="en">
-      <head>
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        {/* Aquí va el header */}
-        <Header />
+    <>
+      {/* Aquí va el header */}
+      <Header />
 
-        {/* Aquí va el contenido de cada ruta */}
-        <Outlet />
+      {/* Aquí va el contenido de cada ruta */}
+      <Outlet />
 
-        {/* Aquí va el footer */}
-        <Footer />
+      {/* Aquí va el footer */}
+      <Footer />
 
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
-    </html>
+      <ScrollRestoration />
+      <Scripts />
+    </>
   );
 }

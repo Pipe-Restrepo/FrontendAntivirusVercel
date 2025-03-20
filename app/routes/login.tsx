@@ -65,7 +65,7 @@ export default function Login (){
         <div>
             <Header></Header>     
             <div className="flex min-h-screen items-center justify-center bg-gray-100">
-                <div className="flex w-full max-w-4xl bg-white overflow-hidden -translate-y-10">
+                <div className="flex w-full max-w-4xl bg-white overflow-hidden translate-y-20">
                     {/* Sección de la imagen */}
                     <div className="hidden md:flex items-center justify-center bg-[#f3f4f6] w-1/2">
                     <img
