@@ -114,7 +114,7 @@ export default function Novedades() {
             </button>
           </div>
         </section>
-        <section className="w-3/4 h-64">
+        <section className="w-full md:w-3/4 min-h-[256px] flex-grow mb-44 px-4">
           <div className="grid grid-cols-3 gap-4 w-full ">
           {oportunidades.map((opportunity, index) => (
           <OpportunityCard key={index} opportunity={opportunity} />
