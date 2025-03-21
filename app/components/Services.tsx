@@ -57,7 +57,7 @@ export const Services = () => {
 
   return (
     <div className="w-11/12">
-        <h2 className="text-3xl text-[#1D1856] text-center font-bold pb-10">Servicios</h2>
+        <h2 className="text-[52px] text-[#1D1856] text-center font-bold pb-10">Servicios</h2>
         <Swiper
         slidesPerView={3}
         spaceBetween={30}
