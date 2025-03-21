@@ -1,4 +1,8 @@
 import type { MetaFunction } from "@remix-run/node";
+import Header from "~/components/Header";
+import Inicio from "~/components/Inicio";
+import Oportunity from "~/components/Oportunity";
+import { Services } from "~/components/Services";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,10 +13,11 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen p-8">
-      <h1 className="text-4xl font-bold mb-4"style={{ color: '#32526E' }}>
-        Bienvenido a la página oficial de la Fundación Antivirus
-      </h1>
-    </section>
+    <div className="flex flex-col justify-center items-center">
+      <Header/>
+      <Inicio/>
+      <Oportunity/>
+      <Services/>
+    </div>
   );
 }
