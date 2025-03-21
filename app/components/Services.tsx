@@ -56,7 +56,7 @@ export const Services = () => {
     ]
 
   return (
-    <div className="pt-20">
+    <div className="w-11/12">
         <h2 className="text-3xl text-[#1D1856] text-center font-bold pb-10">Servicios</h2>
         <Swiper
         slidesPerView={3}
@@ -74,7 +74,7 @@ export const Services = () => {
       >
         {slideServices.map((data)=>(
           <SwiperSlide key={data.id} className='flex flex-col justify-between border border-black rounded-lg'>
-              <img className='rounded-lg w-full' src={data.image} alt={data.title} />
+              <img className='rounded-lg w-full h-auto' src={data.image} alt={data.title} />
               <div className='h-60 w-5/6 ps-5'>
                   <h3 className='py-5 text-3xl font-bold'>{data.title}</h3>
                   <p>{data.description}</p>

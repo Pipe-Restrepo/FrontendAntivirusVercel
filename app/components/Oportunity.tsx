@@ -48,11 +48,11 @@ export default function Oportunity(){
             }, 
         ]
     return (
-        <div>
+        <div className="w-11/12">
             <h2 className="text-[52px] text-[#1D1856] text-center font-bold py-20">¡Mira estás oportunidades! </h2>
             <Swiper 
                 slidesPerView={3}
-                spaceBetween={30}
+                spaceBetween={10}
                 freeMode={true}
                 pagination={{
                     clickable:true
@@ -67,7 +67,7 @@ export default function Oportunity(){
                     </div>
                     <div>
                         <h4 className="font-semibold text-3xl">{data.title}</h4>
-                        <p className="text-2xl">{data.description}</p>
+                        <p className="text-base">{data.description}</p>
                     </div>
 
                 </SwiperSlide>
