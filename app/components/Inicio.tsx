@@ -20,7 +20,7 @@ export default function Inicio() {
                     </div>
 
                 </div>
-                <div className="w-5/12 pt-5">
+                <div className="w-5/12 pt-5 flex justify-center">
                     <img src={casa} alt="casa" className="w-3/4"/>
                 </div>
             </div>
