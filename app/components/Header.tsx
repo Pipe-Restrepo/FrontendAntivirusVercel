@@ -15,7 +15,7 @@ export default function Header() {
       <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
         <nav className="flex items-center justify-between bg-gradient-to-b from-[#32526E] to-[#4B79A1] dark:bg-[#172a41] p-4 lg:px-20 w-full h-20 fixed top-0 z-50 shadow-lg sticky">
           <div className="flex items-center space-x-5 pl-4 lg:pl-20 w-full justify-between md:justify-start">
-            <Link to="/home" className="text-white logo">
+            <Link to="/" className="text-white logo">
               <img
                 src="/assets/images/logo-antivirus.png"
                 alt="Antivirus Logo"
@@ -26,19 +26,19 @@ export default function Header() {
             {/* Se crea navbar */}
 
             <nav className="hidden md:flex space-x-6">
-              <Link to="#inicio" className="text-white hover:text-yellow-300">
+              <Link to="/" className="text-white hover:text-yellow-300">
                 Inicio
               </Link>
 
               <Link
-                to="#servicios"
+                to="/servicios"
                 className="text-white hover:text-yellow-300"
               >
                 Servicios
               </Link>
 
               <Link
-                to="#oportunidades"
+                to="/novedades"
                 className="text-white hover:text-yellow-300"
               >
                 Oportunidades
@@ -101,42 +101,6 @@ export default function Header() {
             </button>
           </div>
         </nav>
-
-        {/* Se crea barra de busqueda de oportunidades */}
-
-        <div className="flex justify-center bg-gradient-to-b from-[#32526E] to-[#4B79A1] pt-10 pb-5 mt-5 w-full
-                sm:pt-6 sm:pb-3
-                xs:pt-6 xs:pb-2">
-          <div className="w-full max-w-4xl mx-auto px-4">
-          <div className="relative w-full px-2">
-            <input
-              type="text"
-              placeholder="Busca tu próxima oportunidad"
-              className="w-full h-[50px] pl-12 pr-12 rounded-full bg-white text-gray-700 shadow-md focus:outline-none
-                  sm:h-[45px] sm:pl-10 sm:pr-10
-                  xs:h-[40px] xs:pl-8 xs:pr-8 text-sm"
-            />
-            <img
-              src="/assets/images/lupa-buscador.png"
-              alt="Buscar"
-              className="absolute left-8 top-1/2 transform -translate-y-1/2 w-6 h-6
-                  sm:left-6 sm:w-5 sm:h-5
-                  xs:left-4 xs:w-4 xs:h-4"
-            />
-            <button className="absolute right-8 top-1/2 transform -translate-y-1/2
-                  sm:right-6
-                  xs:right-4">
-              <img
-                src="/assets/images/filtro-buscador.png"
-                alt="Filtrar"
-                className="w-6 h-6
-                  sm:w-5 sm:h-5
-                  xs:w-4 xs:h-4"
-              />
-            </button>
-          </div>
-        </div>
-        </div>
       </header>
     </>
   );
