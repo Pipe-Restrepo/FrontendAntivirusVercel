@@ -29,13 +29,13 @@ export default function GridRegister(){
     ]
     return(
         <div>
-            <h2 className="text-center text-[#1D1856] font-bold font-raleway text-5xl py-12">¡Obtén los siguientes beneficios!</h2>
-        <div className="grid grid-cols-2 grid-rows-2 gap-4 p-4">
+            <h2 className="text-center text-[#1D1856] font-bold font-raleway text-4xl py-12">¡Obtén los siguientes beneficios!</h2>
+        <div className="grid grid-cols-2 grid-rows-2 gap-4 px-20 pb-10">
             {gridData.map((data)=>(
-                <div key={data.id} className="">
-                    <h3 className="text-3xl text-[#FAA307] font-bold font-raleway">{data.title}</h3>
-                    <p className="text-2xl font-raleway">{data.description}</p>
-                    <div className="flex justify-end">
+                <div key={data.id} className="flex flex-col">
+                    <h3 className="text-2xl text-[#FAA307] font-bold font-raleway">{data.title}</h3>
+                    <p className="text-xl font-raleway">{data.description}</p>
+                    <div className=" w-16 self-end ">
                         <img src={check} alt="check" />
                     </div>
                     
