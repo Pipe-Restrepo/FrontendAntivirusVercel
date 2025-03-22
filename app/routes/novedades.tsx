@@ -1,5 +1,3 @@
-
-
 import Carousel from "~/components/CarouselNews";
 import OpportunityCard from "~/components/OpportunityCard";
 
