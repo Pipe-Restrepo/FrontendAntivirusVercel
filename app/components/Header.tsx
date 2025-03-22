@@ -23,30 +23,39 @@ export default function Header({ isAuthenticated, user }: HeaderProps) {
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
-      <nav className="flex items-center justify-between bg-gradient-to-b from-[#32526E] to-[#4B79A1] dark:bg-[#172a41] p-4 lg:px-20 w-full h-20 fixed top-0 z-50 shadow-lg">
-        {/* Logo */}
-        <div className="flex items-center space-x-5 pl-4 lg:pl-20 w-full justify-between md:justify-start">
-          <Link to="/home" className="text-white logo">
-            <img
-              src="/assets/images/logo-antivirus.png"
-              alt="Antivirus Logo"
-              className="h-20 md:h-16"
-            />
-          </Link>
+    <>
+      <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
+        <nav className="flex items-center justify-between bg-gradient-to-b from-[#32526E] to-[#4B79A1] dark:bg-[#172a41] p-4 lg:px-20 w-full h-20 fixed top-0 z-50 shadow-lg sticky">
+          <div className="flex items-center space-x-5 pl-4 lg:pl-20 w-full justify-between md:justify-start">
+            <Link to="/" className="text-white logo">
+              <img
+                src="/assets/images/logo-antivirus.png"
+                alt="Antivirus Logo"
+                className="h-24 md:h-20"
+              />
+            </Link>
 
-          {/* Navbar (visible en pantallas medianas y grandes) */}
-          <nav className="hidden md:flex space-x-6">
-            <Link to="#inicio" className="text-white hover:text-yellow-300">
-              Inicio
-            </Link>
-            <Link to="#servicios" className="text-white hover:text-yellow-300">
-              Servicios
-            </Link>
-            <Link to="#oportunidades" className="text-white hover:text-yellow-300">
-              Oportunidades
-            </Link>
-          </nav>
+            {/* Se crea navbar */}
+
+            <nav className="hidden md:flex space-x-6">
+              <Link to="/" className="text-white hover:text-yellow-300">
+                Inicio
+              </Link>
+
+              <Link
+                to="/servicios"
+                className="text-white hover:text-yellow-300"
+              >
+                Servicios
+              </Link>
+
+              <Link
+                to="/novedades"
+                className="text-white hover:text-yellow-300"
+              >
+                Oportunidades
+              </Link>
+            </nav>
 
           {/* Menú hamburguesa para móviles */}
           <button
@@ -113,40 +122,22 @@ export default function Header({ isAuthenticated, user }: HeaderProps) {
           {currentLanguage}
         </button>
 
-        {/* Botón de Modo Oscuro/Claro */}
-        <button onClick={toggleDarkMode} className="ml-4 hover:scale-110">
-          <img
-            src="/assets/images/modo-oscuro.png"
-            alt={darkMode ? "Light Mode" : "Dark Mode"}
-            className="w-10 h-10 object-contain"
-          />
-        </button>
-      </nav>
+          {/* Se crea botón de Modo Oscuro/Claro */}
 
-      {/* Barra de búsqueda */}
-      <div className="flex justify-center bg-gradient-to-b from-[#32526E] to-[#4B79A1] pt-8 pb-4 mt-20">
-        <div className="w-full max-w-4xl mx-auto px-4">
-          <div className="relative w-full">
-            <input
-              type="text"
-              placeholder="Busca tu próxima oportunidad"
-              className="w-full h-[50px] pl-12 pr-12 rounded-full bg-white text-gray-700 shadow-md focus:outline-none text-sm"
-            />
-            <img
-              src="/assets/images/lupa-buscador.png"
-              alt="Buscar"
-              className="absolute left-8 top-1/2 transform -translate-y-1/2 w-6 h-6"
-            />
-            <button className="absolute right-8 top-1/2 transform -translate-y-1/2">
+          <div className="relative ml-3 lg:ml-5">
+            <button
+              onClick={toggleDarkMode}
+              className="transition-transform transform hover:scale-110"
+            >
               <img
-                src="/assets/images/filtro-buscador.png"
-                alt="Filtrar"
-                className="w-6 h-6"
+                src="/assets/images/modo-oscuro.png"
+                alt={darkMode ? "Light Mode" : "Dark Mode"}
+                className="w-12 h-12 object-contain filter invert brightness-0"
               />
             </button>
           </div>
-        </div>
-      </div>
-    </header>
+        </nav>
+      </header>
+    </>
   );
 }

@@ -8,20 +8,20 @@ const email= "/assets/register/icons/email.svg";
 const password="/assets/register/icons/password.svg";
 
 export default function FormRegister() {
-    const styleinput="flex mb-5 bg-[#ECECEC] p-5 gap-4 rounded-lg"  
+    const styleinput="flex mb-3 bg-[#ECECEC] p-2 gap-4 rounded-lg"  
     const styleform="flex flex-col" 
     const changeinput="bg-transparent text-black placeholder-black font-bold focus:outline-none"
     return (
 
-        <div className="pt-40">
-            <div className="flex px-6 pt-20">
-                <div className="shadow-2xl px-12 py-8 w-6/12">
+        <div className="pt-10">
+            <div className="flex px-10 lg:px-60 pt-20">
+                <div className="shadow-2xl px-12 py-1 w-full lg:w-3/5">
 
                     <div className="font-poppins">
-                        <h2 className="text-3xl py-10">¿Preparado para encontrar tu próxima <span className="text-5xl font-bold text-[#00266B]">oportunidad? 👋</span></h2>
+                        <h2 className="text-2xl py-4">¿Preparado para encontrar tu próxima <span className="text-4xl font-bold text-[#00266B]">oportunidad? 👋</span></h2>
 
                     </div>
-                    <div className="pb-5">
+                    <div className="pb-3">
                         <div>
                             <img src={buttongoogle} alt="buttongoogle" />
                         </div>  
@@ -30,9 +30,9 @@ export default function FormRegister() {
                         </div>
                     </div>
                     <div className="flex">
-                        <div className="h-1 w-full border-t-2 pt-5"></div>
+                        <div className="h-1 w-full border-t-2 pt-2"></div>
                        
-                        <div className="h-1 w-full border-t-2 pt-5"></div>
+                        <div className="h-1 w-full border-t-2 pt-2"></div>
                     </div>
                     <form>
                         <div className={styleinput}>
@@ -56,7 +56,7 @@ export default function FormRegister() {
                         <div className={styleinput}>
                             <img src={birthday} alt="birthday" />
                             <div className={styleform}>
-                                <label htmlFor="Dia de nacimiento">Dia de naciemiento</label>
+                                <label htmlFor="Dia de nacimiento">Dia de nacimiento</label>
                                 <input type="date"
                                 className={changeinput}
                                     placeholder="DD/MM/AAAA" />
@@ -95,7 +95,7 @@ export default function FormRegister() {
 
                     </form>
                 </div>
-                <div className="w-6/12 pt-36">
+                <div className="w-6/12 pt-20 hidden lg:flex">
                     <img src={imagerocket} alt="imagerocket" />
                 </div>
             </div>
