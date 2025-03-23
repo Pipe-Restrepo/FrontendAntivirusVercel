@@ -89,17 +89,27 @@ export default function Header({ user }: HeaderProps) {
                 {!isLoginPage && (
                   <Link
                     to="/login"
-                    className="px-4 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow hover:bg-yellow-300 transition"
-                  >
-                    Ingresa
+                    className="relative flex items-center justify-between px-6 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow transition w-[120px]"
+                    >
+                      Ingresa
+                      <img
+                        src="/assets/images/flecha_azul.png"
+                        alt="Flechas azul"
+                        className="w-8 h-8"
+                      />
                   </Link>
                 )}
                 {!isRegisterPage && (
                   <Link
                     to="/register"
-                    className="px-4 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow hover:bg-yellow-300 transition"
-                  >
-                    Regístrate
+                    className="relative flex items-center justify-between px-6 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow transition w-[140px] "
+                    >
+                      Regístrate
+                      <img
+                        src="/assets/images/flecha_colores.png"
+                        alt="Flechas azul"
+                        className="w-8 h-8"
+                      />
                   </Link>
                 )}
               </div>
