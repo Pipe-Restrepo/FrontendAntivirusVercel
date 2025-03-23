@@ -1,24 +1,28 @@
-import type { MetaFunction } from "@remix-run/node";
-
-import Navbar from "~/components/Navbar";
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "Antivirus" },
-    
-  ];
-};
-
+import { useEffect, useRef } from "react";
+import { useSearchParams } from "@remix-run/react";
+import Header from "~/components/Header";
+import Inicio from "~/components/Inicio";
+import Oportunity from "~/components/Oportunity";
+import { Services } from "~/components/Services";
 
 export default function Index() {
-  return (
-    <div className="font-sans bg-gray-100">
-      <Navbar></Navbar>
-      <div>
-        <h1>Este es el Index</h1>
-      </div>
-    </div>
+  const [searchParams] = useSearchParams();
+  const servicesRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (searchParams.has("servicios") && servicesRef.current) {
+      servicesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [searchParams]);
+
+  return (
+    <div className="flex flex-col justify-center items-center">
+      <Header />
+      <Inicio />
+      <Oportunity />
+      <div ref={servicesRef}>
+      </div>
+      <Services />
+    </div>
   );
 }
-
