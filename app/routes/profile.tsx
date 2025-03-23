@@ -1,100 +1,87 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "@remix-run/react";
 
+const API_URL = "https://localhost:5282/api"; 
+
 export default function UserProfile() {
-  const [user, setUser] = useState({
-    name: "Juan Pérez",
-    email: "juan.perez@example.com",
-  });
+  const [user, setUser] = useState(null);
+  const [userOpportunities, setUserOpportunities] = useState([]);
 
-  const [opportunities, setOpportunities] = useState([
-    "Oportunidad 1 - Desarrollo Web",
-    "Oportunidad 2 - Diseño UX/UI",
-    "Oportunidad 3 - Administración de Proyectos",
-  ]);
+  // Obtener el perfil del usuario
+  useEffect(() => {
+    const userId = 1; 
 
-  const [newOpportunity, setNewOpportunity] = useState("");
+    // Obtener datos del usuario
+    axios.get(`${API_URL}/Users/${userId}`)
+      .then((response) => setUser(response.data))
+      .catch((error) => console.error("Error al obtener datos del usuario:", error));
 
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+    // Obtener las oportunidades asociadas al usuario
+    axios.get(`${API_URL}/UserOpportunities/${userId}`)
+      .then((response) => setUserOpportunities(response.data))
+      .catch((error) => console.error("Error al obtener las oportunidades del usuario:", error));
+  }, []);
 
-  const handleAddOpportunity = () => {
-    if (newOpportunity.trim() !== "") {
-      setOpportunities([...opportunities, newOpportunity]);
-      setNewOpportunity("");
+  // Eliminar oportunidad del usuario
+  const handleDeleteOpportunity = async (opportunityId) => {
+    const userId = 1; // Reemplaza con el ID del usuario autenticado
+    try {
+      await axios.delete(`${API_URL}/UserOpportunities/${userId}/${opportunityId}`);
+      setUserOpportunities(userOpportunities.filter((opp) => opp.id !== opportunityId));
+    } catch (error) {
+      console.error("Error al eliminar oportunidad:", error);
     }
   };
 
-  const handleDeleteOpportunity = (index) => {
-    setOpportunities(opportunities.filter((_, i) => i !== index));
-  };
-
   return (
-    <div className="max-w-3xl mx-auto p-20 bg-white shadow-lg rounded-lg mt-10">
+    <div className="max-w-4xl mx-auto p-10 bg-white shadow-lg rounded-lg mt-10">
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Mi Perfil</h2>
-      <div className="space-y-6">
-        <div className="flex flex-col">
-          <label className="text-lg font-semibold text-gray-700">Nombre:</label>
-          <input
-            type="text"
-            name="name"
-            value={user.name}
-            onChange={handleChange}
-            className="w-full p-3 border rounded-lg mt-1 text-gray-700"
-          />
+
+      {/* Información del Usuario */}
+      {user && (
+        <div className="bg-gray-100 p-6 rounded-lg mb-6">
+          <h3 className="text-2xl font-bold mb-4 text-gray-800">Información del Usuario</h3>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="font-semibold">Nombre:</span>
+              <span>{user.name}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="font-semibold">Correo Electrónico:</span>
+              <span>{user.email}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="font-semibold">Rol:</span>
+              <span>{user.role}</span>
+            </div>
+          </div>
         </div>
+      )}
 
-        <div className="flex flex-col">
-          <label className="text-lg font-semibold text-gray-700">Correo Electrónico:</label>
-          <input
-            type="email"
-            name="email"
-            value={user.email}
-            disabled
-            className="w-full p-3 border rounded-lg mt-1 bg-gray-200 text-gray-500"
-          />
-        </div>
-
-        <button className="w-full px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-lg">
-          Guardar Cambios
-        </button>
-      </div>
-
-      {/* Sección de Oportunidades Guardadas */}
-      <div className="mt-8 p-6 bg-gray-100 rounded-lg">
-        <h3 className="text-2xl font-bold mb-4 text-gray-800">Mis Oportunidades</h3>
-        
-        <ul className="list-disc pl-6 space-y-2">
-          {opportunities.map((opportunity, index) => (
-            <li key={index} className="text-gray-700 text-lg flex justify-between items-center">
-              {opportunity}
-              <button
-                onClick={() => handleDeleteOpportunity(index)}
-                className="ml-4 text-red-500 hover:text-red-700"
-              >
-                ❌
-              </button>
-            </li>
-          ))}
+      {/* Oportunidades guardadas por el usuario */}
+      <div className="bg-gray-100 p-6 rounded-lg">
+        <h3 className="text-2xl font-bold mb-4 text-gray-800">Oportunidades Guardadas</h3>
+        <ul className="space-y-3">
+          {userOpportunities.length > 0 ? (
+            userOpportunities.map(({ opportunity }) => (
+              <li key={opportunity.id} className="flex justify-between items-center bg-white p-4 shadow rounded-lg">
+                <div>
+                  <span className="font-semibold">{opportunity.name}</span>
+                  <p className="text-sm text-gray-600">{opportunity.description}</p>
+                </div>
+                <button
+                  onClick={() => handleDeleteOpportunity(opportunity.id)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  ❌ Eliminar
+                </button>
+              </li>
+            ))
+          ) : (
+            <p>No has guardado ninguna oportunidad.</p>
+          )}
         </ul>
-
-        {/* Agregar Oportunidad */}
-        <div className="mt-4 flex">
-          <input
-            type="text"
-            value={newOpportunity}
-            onChange={(e) => setNewOpportunity(e.target.value)}
-            className="w-full p-3 border rounded-lg text-gray-700"
-            placeholder="Agregar nueva oportunidad..."
-          />
-          <button
-            onClick={handleAddOpportunity}
-            className="ml-2 px-4 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 text-lg"
-          >
-            ➕
-          </button>
-        </div>
       </div>
 
       <Link to="/" className="block text-center text-blue-500 mt-6 text-lg hover:underline">

@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "@remix-run/react";
-import { getCookie } from "~/utils/cookies"; // Importamos getCookie
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+
 
 interface HeaderProps {
   user?: {
@@ -9,17 +11,15 @@ interface HeaderProps {
 }
 
 export default function Header({ user }: HeaderProps) {
+  const isAuthenticated = !!user;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(() => !!getCookie("authToken"));
+  
 
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";
   const isRegisterPage = location.pathname === "/register";
 
-  useEffect(() => {
-    const token = getCookie("authToken"); // Obtenemos el token de las cookies
-    setIsAuthenticated(!!token); // Si existe el token, está autenticado
-  }, []);
+
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -41,10 +41,10 @@ export default function Header({ user }: HeaderProps) {
               <Link to="/" className="text-white hover:text-yellow-300">
                 Inicio
               </Link>
-              <Link to="/servicios" className="text-white hover:text-yellow-300">
+              <Link to="?services" className="text-white hover:text-yellow-300">
                 Servicios
               </Link>
-              <Link to="/novedades" className="text-white hover:text-yellow-300">
+              <Link to="/news" className="text-white hover:text-yellow-300">
                 Oportunidades
               </Link>
             </nav>
@@ -67,18 +67,29 @@ export default function Header({ user }: HeaderProps) {
           <div className="hidden md:flex items-center space-x-4 pr-4">
             {isAuthenticated ? (
               <div className="flex items-center space-x-2">
-                <Link to="/profile" className="text-white hover:text-yellow-300">
-                  Mi Perfil
+                <Link
+                  to="/profile"
+                  className="flex items-center gap-2 text-white text-lg font-semibold px-4 py-2 rounded-lg 
+             hover:text-gray-300 transition-all duration-300 ease-in-out"
+                >
+                  <FontAwesomeIcon icon={faUserCircle} className="text-2xl" />
+                  <span className="whitespace-nowrap">Mi Cuenta</span>
                 </Link>
+
+
                 {user?.role === "admin" && (
-                  <Link to="/admin/profile" className="text-white hover:text-yellow-300">
+                  <Link
+                    to="/admin/profile"
+                    className="text-white hover:text-gray-300 transition duration-300"
+                  >
                     Panel Admin
                   </Link>
                 )}
+
                 <form method="post" action="/logout">
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-red-500 text-white text-sm rounded-md font-semibold hover:bg-red-600 transition"
+                    className="px-5 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white text-base rounded-lg font-bold shadow-md hover:from-red-600 hover:to-red-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
                   >
                     Salir
                   </button>
@@ -90,26 +101,26 @@ export default function Header({ user }: HeaderProps) {
                   <Link
                     to="/login"
                     className="relative flex items-center justify-between px-6 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow transition w-[120px]"
-                    >
-                      Ingresa
-                      <img
-                        src="/assets/images/flecha_azul.png"
-                        alt="Flechas azul"
-                        className="w-8 h-8"
-                      />
+                  >
+                    Ingresa
+                    <img
+                      src="/assets/images/flecha_azul.png"
+                      alt="Flechas azul"
+                      className="w-8 h-8"
+                    />
                   </Link>
                 )}
                 {!isRegisterPage && (
                   <Link
                     to="/register"
                     className="relative flex items-center justify-between px-6 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow transition w-[140px] "
-                    >
-                      Regístrate
-                      <img
-                        src="/assets/images/flecha_colores.png"
-                        alt="Flechas azul"
-                        className="w-8 h-8"
-                      />
+                  >
+                    Regístrate
+                    <img
+                      src="/assets/images/flecha_colores.png"
+                      alt="Flechas azul"
+                      className="w-8 h-8"
+                    />
                   </Link>
                 )}
               </div>
