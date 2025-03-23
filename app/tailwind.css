@@ -9,7 +9,10 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+  font-family: "Myriad Pro", "Arial", "Helvetica", sans-serif;
+
 }
+
 h1 {
   color: #1D1856;
   font-family: "Raleway" ;
