@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 
 export default {
   content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class", // Permite cambiar entre modo oscuro y claro manualmente con una clase
   theme: {
     extend: {
       fontFamily: {
@@ -14,7 +15,9 @@ export default {
           "Segoe UI Emoji",
           "Segoe UI Symbol",
           "Noto Color Emoji",
-          "Impact', 'Charcoal', 'sans-serif"
+          "Impact",
+          "Charcoal",
+          "sans-serif",
         ],
       },
     },
