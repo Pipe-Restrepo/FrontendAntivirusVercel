@@ -2,43 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+:root {
+  --primary-text: #1D1856;
+  --background-light: #FAFAFA;
+  --background-dark: #0F172A;
+  --border-light: #dadee2;
+  --border-dark: #374151;
+}
+
+html {
+  @apply transition-colors duration-300;
+}
+
 body {
-  @apply bg-[#FAFAFA] dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  background-color: var(--background-light);
+  color: #1D1856;
   font-family: "Myriad Pro", "Arial", "Helvetica", sans-serif;
+}
 
+.dark body {
+  background-color: var(--background-dark);
+  color: #F9FAFB;
 }
 
 h1 {
-  color: #1D1856;
-  font-family: "Raleway" ;
+  color: var(--primary-text);
+  font-family: "Raleway";
   font-size: 5.3rem;
 }
-@media (prefers-color-scheme: dark) {
-  h1 {
-    color: white; /* Blanco para modo oscuro */
-  }
+
+.dark h1 {
+  color: white;
 }
 
 .search-label {
-  border-width: 1px;
-  border-color: rgb(218, 222, 226); 
+  border: 1px solid var(--border-light);
   background-color: #dadee2;
 }
 
+.dark .search-label {
+  border-color: var(--border-dark);
+  background-color: #1E293B;
+}
+
 .search-select {
-  @apply w-full md:w-auto;
-  margin-right: 1rem;
-  border-color: rgb(218, 222, 226);
+  @apply w-full md:w-auto mr-4 border;
+  border-color: var(--border-light);
+}
+
+.dark .search-select {
+  border-color: var(--border-dark);
 }
 
 .search-button {
-  border-width: 1px;
-  border-radius: 0.375rem;
-  width: 7rem;
-  margin-right: 1rem;
+  @apply border rounded-md w-28 mr-4;
+  border-color: gray;
+}
+
+.dark .search-button {
+  border-color: #4B5563;
 }

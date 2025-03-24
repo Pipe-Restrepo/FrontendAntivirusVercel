@@ -7,6 +7,7 @@ const email= "/assets/register/icons/email.svg";
 const password="/assets/register/icons/password.svg";
 
 export default function FormRegister() {
+    const navigation = useNavigation();
     const isSubmitting = navigation.state === "submitting";
 
     const styleinput="flex mb-3 bg-[#ECECEC] p-2 gap-4 rounded-lg"  
