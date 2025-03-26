@@ -5,10 +5,13 @@ const lastname= "/assets/register/icons/lastname.svg";
 const birthday= "/assets/register/icons/birthday.svg";
 const email= "/assets/register/icons/email.svg";
 const password="/assets/register/icons/password.svg";
+import { registerUser } from "~/utils/register";
+import Swal from "sweetalert2";
 
 export default function FormRegister() {
-    const isSubmitting = navigation.state === "submitting";
+    const navigation = useNavigation();
 
+    const isSubmitting = navigation.state === "submitting";
     const styleinput="flex mb-3 bg-[#ECECEC] p-2 gap-4 rounded-lg"  
     const styleform="flex flex-col" 
     const changeinput="bg-transparent text-black placeholder-black font-bold focus:outline-none"
@@ -45,54 +48,71 @@ export default function FormRegister() {
                             <img src={name} alt="name" />
                             <div className={styleform}>
                                 <label htmlFor="Nombre"> Nombre</label>
-                                <input type="text"
+                                <input 
+                                type="text"
+                                name="name"
                                 className={changeinput}
-                                    placeholder="Nombre" />
+                                placeholder="Nombre" 
+                                />
                             </div>
                         </div>
                         <div className={styleinput}>
                             <img src={lastname} alt="lastname" />
                             <div className={styleform}>
                                 <label htmlFor="Apellido"> Apellido</label>
-                                <input type="text"
+                                <input 
+                                type="text"
+                                name="lastname"
                                 className={changeinput}
-                                    placeholder="Apellido" />
+                                placeholder="Apellido" 
+                                />
                             </div>
                         </div>
                         <div className={styleinput}>
                             <img src={birthday} alt="birthday" />
                             <div className={styleform}>
                                 <label htmlFor="Dia de nacimiento">Dia de nacimiento</label>
-                                <input type="date"
+                                <input 
+                                type="date"
                                 className={changeinput}
-                                    placeholder="DD/MM/AAAA" />
+                                placeholder="DD/MM/AAAA" 
+                                />
                             </div>
                         </div>
                         <div className={styleinput}>
                             <img src={email} alt="email" />
                             <div className={styleform}>
                                 <label htmlFor="Email"> Email</label>
-                                <input type="email"
+                                <input 
+                                type="email"
+                                name="email"
                                 className={changeinput}
-                                    placeholder="example@gmail.com" />
+                                placeholder="example@gmail.com" 
+                                />
                             </div>
                         </div>
                         <div className={styleinput}>
                             <img src={password} alt="password" />
                             <div className={styleform}>
                                 <label htmlFor="Contraseña"> Contraseña</label>
-                                <input type="password"
+                                <input 
+                                type="password"
+                                name="password"
                                 className={changeinput}
-                                    placeholder="******" />
+                                placeholder="******" 
+                                />
                             </div>
                         </div>
                         <div className={styleinput}>
                             <img src={password} alt="password" />
                             <div className={styleform}>
                                 <label htmlFor="Confirma tu contraseña"> Confirma tu contraseña</label>
-                                <input type="password"
+                                <input 
+                                type="password"
+                                name="password_confirm"
                                 className={changeinput}
-                                    placeholder="******" />
+                                placeholder="******" 
+                                />
                             </div>
                         </div>
                         <button className="w-full bg-[#faa307] font-black text-white p-2 rounded-lg font-bold hover:bg-yellow-600 mt-4" disabled={isSubmitting}>
