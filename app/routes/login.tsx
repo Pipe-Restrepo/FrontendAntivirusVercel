@@ -13,6 +13,7 @@ export const action = async ({ request }: { request: Request }) => {
     const formData = await request.formData();
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    
 
     const result = await loginUser(email, password);
 
@@ -33,7 +34,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     const token = await getCookie(request, "token");
 
     if (token) {
-        return redirect("/novedades");
+        return redirect("/news");
     }
 
     return null;
@@ -57,7 +58,7 @@ export default function Login (){
                 text: actionData.error,
             });
         } else if (actionData?.success) {
-            window.location.href = "/novedades";
+            window.location.href = "/news";
         }
     }, [actionData]);
     
@@ -65,7 +66,7 @@ export default function Login (){
         <div>
             <Header></Header>     
             <div className="flex min-h-screen items-center justify-center bg-gray-100">
-                <div className="flex w-full max-w-4xl bg-white overflow-hidden translate-y-20">
+                <div className="flex w-full max-w-4xl bg-white overflow-hidden translate-y-10">
                     {/* Sección de la imagen */}
                     <div className="hidden md:flex items-center justify-center bg-[#f3f4f6] w-1/2">
                     <img
@@ -159,7 +160,7 @@ export default function Login (){
 
                     <p className="mt-4 text-center text-gray-600 text-sm">
                         ¿No tienes una cuenta?{" "}
-                        <a href="#" className="text-[#faa307]">Regístrate</a>
+                        <a href="/register" className="text-[#faa307]">Regístrate</a>
                     </p>
                     </div>
                 </div>

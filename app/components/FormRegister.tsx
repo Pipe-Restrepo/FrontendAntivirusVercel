@@ -10,8 +10,9 @@ import Swal from "sweetalert2";
 
 export default function FormRegister() {
     const navigation = useNavigation();
-
     const isSubmitting = navigation.state === "submitting";
+
+    // const isSubmitting = navigation.state === "submitting";
     const styleinput="flex mb-3 bg-[#ECECEC] p-2 gap-4 rounded-lg"  
     const styleform="flex flex-col" 
     const changeinput="bg-transparent text-black placeholder-black font-bold focus:outline-none"
