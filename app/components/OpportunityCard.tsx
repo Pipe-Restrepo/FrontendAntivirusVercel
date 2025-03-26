@@ -18,6 +18,11 @@ interface Opportunity {
   institution:{
     name : string;
     logo: string;
+    ubication: string;
+    url_generalidades:  string;
+    url_oferta_academica : string;
+    url_bienestar: string;
+    url_admision: string;
   }
 }
 
@@ -88,13 +93,25 @@ export default function OpportunityCard({opportunity} : {opportunity : Opportuni
           style={{ position: 'absolute', top: `${modalTop}px`, left: '50%', transform: 'translate(-50%, -50%)' }}>
             <button className="absolute top-2 right-2 text-gray-600 hover:text-gray-900" onClick={() => setShowModal(false)}>✖</button>
             <h2 className="text-2xl font-bold text-gray-600 py-2">{opportunity.name}</h2>
+            <p className="text-gray-600 py-1"><strong>Ubicación: </strong>{opportunity.institution?.ubication ?? "Desconocida"}</p>
             <p className="text-gray-600 py-1"><strong>Observación: </strong>{opportunity.observation}</p>
             <p className="text-gray-600 py-1"><strong>Tipo: </strong>{opportunity.type}</p>
             <p className="text-gray-600 py-1"><strong>Descripción: </strong>{opportunity.description}</p>
             <p className="text-gray-600 py-1"><strong>Requisitos: </strong> {opportunity.requires}</p>
             <p className="text-gray-600 py-1"><strong>Guia: </strong> {opportunity.guide}</p>
             <p className="text-gray-600 py-1"><strong>Datos Adicionales: </strong> {opportunity.adicional_dates}</p>
+            <p className="text-gray-600 py-1"><strong>Canales De Servicio: </strong> {opportunity.guide}</p>
             <p className="text-gray-600 py-1"><strong>Modalidad: </strong> {opportunity.modality}</p>
+            <p className="text-gray-600 py-1"><strong>URL Universidad: </strong> <a href= {opportunity.institution?.url_generalidades ?? "Desconocida"} 
+            className="underline" target="_blank" rel="noopener noreferrer">{opportunity.institution?.url_generalidades ?? "Desconocida"}</a> </p> {/* rel="noopener noreferrer" evita los problemas de seguridad de target="_blank"
+            noopener: Evita que la nueva página tenga acceso a la página original a través de window.opener.
+            noreferrer: Además de lo anterior, también evita que se envíe información de referencia al nuevo sitio. */}
+            <p className="text-gray-600 py-1"><strong>URL Oferta Academica: </strong> <a href= {opportunity.institution?.url_oferta_academica ?? "Desconocida"} 
+            className="underline" target="_blank" rel="noopener noreferrer">{opportunity.institution?.url_generalidades ?? "Desconocida"}</a> </p>
+            <p className="text-gray-600 py-1"><strong>URL Bienertar: </strong> <a href= {opportunity.institution?.url_bienestar ?? "Desconocida"} 
+            className="underline" target="_blank" rel="noopener noreferrer">{opportunity.institution?.url_generalidades ?? "Desconocida"}</a> </p>
+            <p className="text-gray-600 py-1"><strong>URL Admincion: </strong> <a href= {opportunity.institution?.url_admision ?? "Desconocida"} 
+            className="underline" target="_blank" rel="noopener noreferrer">{opportunity.institution?.url_generalidades ?? "Desconocida"}</a> </p>
           </div>
         </div>
       )}
