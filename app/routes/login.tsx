@@ -24,7 +24,7 @@ export const action = async ({ request }: { request: Request }) => {
     }, {
         status: result.error ? 401 : 200,
         headers: result.token 
-            ? { "Set-Cookie": `token=${result.token}; HttpOnly; Path=/;` } 
+            ? { "Set-Cookie": `token=${result.token}; HttpOnly; Path=/;, rol=${result.rol}; HttpOnly; Path=/;` }
             : {},
     });
 };

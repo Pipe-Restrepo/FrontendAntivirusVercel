@@ -48,7 +48,7 @@ export default function Oportunity(){
             }, 
         ]
     return (
-        <div className="w-11/12">
+        <div className="w-full">
             <h2 className="text-[52px] text-[#1D1856] text-center font-bold py-20">¡Mira estás oportunidades! </h2>
             <Swiper 
                 slidesPerView={3}
@@ -62,12 +62,14 @@ export default function Oportunity(){
             >
                {SimulationBD.map((data)=>(
                 <SwiperSlide key={data.id} className="ps-10">
-                    <div>
-                        <img src={data.image} alt={data.title} className="h-[400px] pb-6"/>
-                    </div>
-                    <div>
-                        <h4 className="font-semibold text-3xl">{data.title}</h4>
-                        <p className="text-base">{data.description}</p>
+                    <div className="flex flex-col items-center">
+                        <div>
+                            <img src={data.image} alt={data.title} className="h-[400px] pb-6"/>
+                        </div>
+                        <div className="w-[350px]">
+                            <h4 className="font-semibold text-3xl">{data.title}</h4>
+                            <p className="text-base">{data.description}</p>
+                        </div>
                     </div>
 
                 </SwiperSlide>

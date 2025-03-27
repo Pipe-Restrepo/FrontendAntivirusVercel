@@ -8,10 +8,17 @@ import { Services } from "~/components/Services";
 export default function Index() {
   const [searchParams] = useSearchParams();
   const servicesRef = useRef<HTMLDivElement>(null);
+  const opotunitysRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (searchParams.has("services") && servicesRef.current) {
       smoothScrollTo(servicesRef.current);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (searchParams.has("oportunities") && opotunitysRef.current) {
+      smoothScrollTo(opotunitysRef.current);
     }
   }, [searchParams]);
 
@@ -44,7 +51,9 @@ export default function Index() {
     <div className="flex flex-col justify-center items-center">
       <Header />
       <Inicio />
-      <Oportunity />
+      <div ref={opotunitysRef} className="w-full">
+        <Oportunity />
+      </div>
       <div ref={servicesRef} className="w-full">
         <Services />
       </div>
