@@ -26,11 +26,11 @@ export default function Header({ user }: HeaderProps) {
     //console.log("Datos crudos de localStorage:", userData);
     if (userData) {
       setStoredUser(JSON.parse(userData));
+      console.log("datos de UserData: "+ userData)
     }
   }, []);
 
   const currentUser = user || storedUser;
-
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 

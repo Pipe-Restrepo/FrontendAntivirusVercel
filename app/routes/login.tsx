@@ -67,6 +67,7 @@ export default function Login() {
             if (userData.id)
             {
                 localStorage.setItem("user", JSON.stringify(userData));//guarda el usuario
+                console.log("Usuario autenticado:", userData);
             }
         })
         .catch(() => {
