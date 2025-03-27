@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { Link, useLocation } from "@remix-run/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -6,12 +6,14 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 interface HeaderProps {
   user?: {
+    name?: string;
     role?: string;
   } | null;
 }
 
 export default function Header({ user }: HeaderProps) {
-  const isAuthenticated = !!user;
+  const [storedUser, setStoredUser] = useState<{ name?: string; role?: string } | null>(null);
+  const isAuthenticated = !!(user || storedUser);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
 
@@ -19,6 +21,15 @@ export default function Header({ user }: HeaderProps) {
   const isLoginPage = location.pathname === "/login";
   const isRegisterPage = location.pathname === "/register";
 
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    //console.log("Datos crudos de localStorage:", userData);
+    if (userData) {
+      setStoredUser(JSON.parse(userData));
+    }
+  }, []);
+
+  const currentUser = user || storedUser;
 
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
@@ -73,7 +84,7 @@ export default function Header({ user }: HeaderProps) {
              hover:text-gray-300 transition-all duration-300 ease-in-out"
                 >
                   <FontAwesomeIcon icon={faUserCircle} className="text-2xl" />
-                  <span className="whitespace-nowrap">Mi Cuenta</span>
+                  <span className="whitespace-nowrap">{currentUser?.name}</span>
                 </Link>
 
 
