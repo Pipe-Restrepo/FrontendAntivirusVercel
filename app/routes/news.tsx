@@ -49,11 +49,12 @@ export default function News() {
 
   // Filtrar oportunidades
   const filteredOpportunities = opportunities.filter((opportunity) => {
+    //console.log(opportunity)
     return (
       (filters.searchName === "" || opportunity.name.toLowerCase().includes(filters.searchName.toLowerCase())) &&
       (filters.searchUbication === "" ||
         (opportunity.institution?.ubication || "").toLowerCase().includes(filters.searchUbication.toLowerCase())) &&
-      (filters.searchDate === "" || (opportunity.adicionalDates || "").includes(filters.searchDate)) &&
+      (filters.searchDate === "" || (opportunity.adicional_dates || "").includes(filters.searchDate)) &&
       (filters.searchType === "" || opportunity.type.toLowerCase().includes(filters.searchType.toLowerCase()))
     );
   });

@@ -19,6 +19,7 @@ export async function loginUser(email: string, password: string) {
 
     return {
         token: result.token,
+        rol: result.rol,
         headers: {
         "Set-Cookie": await authCookie.serialize(result.token),
         },

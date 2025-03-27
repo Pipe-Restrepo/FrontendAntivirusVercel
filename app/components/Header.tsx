@@ -44,7 +44,7 @@ export default function Header({ user }: HeaderProps) {
               <Link to="?services" className="text-white hover:text-yellow-300">
                 Servicios
               </Link>
-              <Link to="/news" className="text-white hover:text-yellow-300">
+              <Link to={isAuthenticated ? "/news" : "?oportunities"}  className="text-white hover:text-yellow-300">
                 Oportunidades
               </Link>
             </nav>
