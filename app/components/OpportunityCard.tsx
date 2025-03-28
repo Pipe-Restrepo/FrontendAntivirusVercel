@@ -32,10 +32,10 @@ export default function OpportunityCard({
 }) {
   const [showModal, setShowModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteId, setFavoriteId] = useState<number | null>(null); // Guarda el ID en caso de existir
   const [modalTop, setModalTop] = useState(0); //para almacenar la posicion del modal
 
   //consulta el Back para saber si la oportunidad ya es favorita y actualiza el estado de isFavorite
-
   useEffect(() => {
     const userData = localStorage.getItem("user");
     const token = localStorage.getItem("token"); // Obtener el token
@@ -52,54 +52,86 @@ export default function OpportunityCard({
         },
       }
     )
-      .then((res) => res.json())
+      .then(async (res) => { 
+        if (res.status === 404) {
+          return null; // Si el backend retorna 404, tomamos valor null
+        }
+        try {
+          return await res.json(); // Intentamos parsear el JSON
+        } catch (error) {
+          console.error("Error al convertir JSON:", error);
+          return null; // Si hay un error, retornamos null
+        }
+      })
       .then((data) => {
-        setIsFavorite(data); // La API devuelve true o false directamente
+        if (data !== null)
+        {
+          setIsFavorite(true); 
+          setFavoriteId(data.id); // guardamos el ID de la relacion
+          console.log("valor de Id guardado: "+ data.id)
+        }else{
+          setIsFavorite(false);
+          setFavoriteId(null);
+        }
       })
       .catch((error) => console.error("Error al obtener favoritos:", error));
   }, [opportunity.id]);
 
 
-  //logica para guardar la oportunidad
+  //logica para guardar la oportunidad y eliminar
   const handleToggleFavorite = async (e: React.MouseEvent) => {
-    e.stopPropagation(); // Evita que el clic se propague al contenedor padre div
-
+    e.stopPropagation(); // Evita propagación del clic
+  
     const userData = localStorage.getItem("user");
-    if (!userData) {
+    const token = localStorage.getItem("token");
+    if (!userData || !token) {
       console.error("Usuario no autenticado");
       return;
     }
-
-    const { id: user_id } = JSON.parse(userData); // Extrae el ID del usuario
-    console.log("Enviando datos:", {
+  
+    const { id: user_id } = JSON.parse(userData); // Extrae ID del usuario
+    const url = "http://localhost:5282/api/UserOpportunities";
+  
+    const requestData = {
       user_id,
       opportunity_id: opportunity.id,
-    });
+    };
+  
     try {
-      const response = await fetch(
-        "http://localhost:5282/api/UserOpportunities",
-        {
+      let response;
+      if (isFavorite && favoriteId !== null) {
+        // Eliminar si ya es favorito
+        response = await fetch(`${url}?id=${favoriteId}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        if (response.ok) {
+          setIsFavorite(false);
+          setFavoriteId(null);
+        }
+      } else {
+        // Guardar nueva oportunidad
+        response = await fetch(`${url}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            user_id,
-            opportunity_id: opportunity.id, // ID de la oportunidad
-          }),
+          body: JSON.stringify(requestData),
+        });
+  
+        if (response.ok) {
+          const data = await response.json(); // Obtiene el ID de la nueva relación
+          console.log("respuesta completa del backend:", data); // Verifica qué devuelve el backend
+          setIsFavorite(true);
+          setFavoriteId(data.id); // Asegura que el estado se actualice correctamente obteniendolo del back al crearlo
         }
-      );
-      console.log("Token enviado:", localStorage.getItem("token"));
-
-      if (!response.ok) {
-        throw new Error("Error al guardar/eliminar la oportunidad");
       }
-
-      setIsFavorite(!isFavorite);
     } catch (error) {
-      console.error(error);
+      console.error("Error al guardar/eliminar la oportunidad:", error);
     }
   };
 
