@@ -43,19 +43,25 @@ export default function News() {
   const [filters, setFilters] = useState({
     searchName: "",
     searchUbication: "",
-    searchDate: "",
+    startDate: "",
+    endDate: "",
     searchType: "",
   });
 
   // Filtrar oportunidades
   const filteredOpportunities = opportunities.filter((opportunity) => {
-    //console.log(opportunity)
+    const opportunityDate = opportunity.adicional_dates ? new Date(opportunity.adicional_dates) : null;
+    const start = filters.startDate ? new Date(filters.startDate) : null;
+    const end = filters.endDate ? new Date(filters.endDate) : null;
+  
     return (
       (filters.searchName === "" || opportunity.name.toLowerCase().includes(filters.searchName.toLowerCase())) &&
       (filters.searchUbication === "" ||
         (opportunity.institution?.ubication || "").toLowerCase().includes(filters.searchUbication.toLowerCase())) &&
-      (filters.searchDate === "" || (opportunity.adicional_dates || "").includes(filters.searchDate)) &&
-      (filters.searchType === "" || opportunity.type.toLowerCase().includes(filters.searchType.toLowerCase()))
+      (filters.searchType === "" || opportunity.type.toLowerCase().includes(filters.searchType.toLowerCase())) &&
+      (!opportunityDate || 
+        (!start || opportunityDate >= start) && 
+        (!end || opportunityDate <= end))
     );
   });
 
