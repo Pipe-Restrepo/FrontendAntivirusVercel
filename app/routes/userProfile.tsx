@@ -73,7 +73,7 @@ export default function UserProfile() {
             />
           ))
         ) : (
-          <p className="bg-yellow-100 col-span-full text-3xl text-center p-10">No tienes oportunidades guardadas.</p>
+          <p className="col-span-full text-3xl text-center p-10">No tienes oportunidades guardadas.</p>
         )}
       </div>
       
