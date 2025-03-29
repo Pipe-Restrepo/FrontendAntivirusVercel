@@ -68,7 +68,6 @@ export default function OpportunityCard({
         {
           setIsFavorite(true); 
           setFavoriteId(data.id); // guardamos el ID de la relacion
-          console.log("valor de Id guardado: "+ data.id)
         }else{
           setIsFavorite(false);
           setFavoriteId(null);
@@ -125,7 +124,6 @@ export default function OpportunityCard({
   
         if (response.ok) {
           const data = await response.json(); // Obtiene el ID de la nueva relación
-          console.log("respuesta completa del backend:", data); // Verifica qué devuelve el backend
           setIsFavorite(true);
           setFavoriteId(data.id); // Asegura que el estado se actualice correctamente obteniendolo del back al crearlo
         }

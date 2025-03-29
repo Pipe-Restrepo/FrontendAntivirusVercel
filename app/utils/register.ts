@@ -1,15 +1,17 @@
 import { api } from "~/service/api";
 
-export async function registerUser(name: string, email: string, password: string) {
-    const role = 'user'
-    const result = await api("/auth/register", "POST", { name, email, password, role });
+export async function registerUser(name, email, password) {
+    const role = "user";
 
-    // Validacion de creacion de usuario
-    if (result.error) {
-        return { error: "No se ha podido crear el usuario" };
+    try {
+        const result = await api("/auth/register", "POST", { name, email, password, role });
+
+        if (!result || result.error || result.status !== 200) {
+            return { error: result?.message || "No se ha podido crear el usuario" };
+        }
+
+        return { data: result };
+    } catch (error) {
+        return { error: "Error de conexión con el servidor" };
     }
-
-    return {
-        data: result,
-    };
 }

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useActionData, useNavigation, Form } from "@remix-run/react";
 const imagerocket="/assets/register/images/imagerocket.svg";
 const name="/assets/register/icons/name.svg";
@@ -11,6 +12,65 @@ import Swal from "sweetalert2";
 export default function FormRegister() {
     const navigation = useNavigation();
     const isSubmitting = navigation.state === "submitting";
+    const [formData, setFormData] = useState({
+        name: "",
+        lastname: "",
+        email: "",
+        password: "",
+        password_confirm: ""
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!formData.name || !formData.lastname || !formData.email || !formData.password || !formData.password_confirm) {
+            Swal.fire("Error", "Todos los campos son obligatorios", "error");
+            return;
+        }
+        if (formData.password !== formData.password_confirm) {
+            Swal.fire("Error", "Las contraseñas no coinciden", "error");
+            return;
+        }
+
+        const payload = {
+            name: `${formData.name} ${formData.lastname}`,
+            email: formData.email,
+            rol: "user",
+            password: formData.password
+        };
+
+        try {
+            const response = await fetch("http://localhost:5282/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                Swal.fire({
+                    title: "Éxito",
+                    text: "Cuenta creada correctamente",
+                    icon: "success",
+                    timer: 3000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = "/login";
+                });
+            } else {
+                Swal.fire("Error", result.message || "Error al registrar", "error");
+            }
+        } catch (error) {
+            Swal.fire("Error", "No se pudo conectar con el servidor", "error");
+        }
+    };
 
     // const isSubmitting = navigation.state === "submitting";
     const styleinput="flex mb-3 bg-[#ECECEC] p-2 gap-4 rounded-lg"  
@@ -44,7 +104,7 @@ export default function FormRegister() {
                         <div className="flex-grow border-t border-gray-300"></div>
                     </div>
 
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <div className={styleinput}>
                             <img src={name} alt="name" />
                             <div className={styleform}>
@@ -54,6 +114,8 @@ export default function FormRegister() {
                                 name="name"
                                 className={changeinput}
                                 placeholder="Nombre" 
+                                value={formData.name}
+                                onChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -66,6 +128,8 @@ export default function FormRegister() {
                                 name="lastname"
                                 className={changeinput}
                                 placeholder="Apellido" 
+                                value={formData.lastname}
+                                onChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -89,6 +153,8 @@ export default function FormRegister() {
                                 name="email"
                                 className={changeinput}
                                 placeholder="example@gmail.com" 
+                                value={formData.email}
+                                onChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -101,6 +167,8 @@ export default function FormRegister() {
                                 name="password"
                                 className={changeinput}
                                 placeholder="******" 
+                                value={formData.password}
+                                onChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -113,6 +181,8 @@ export default function FormRegister() {
                                 name="password_confirm"
                                 className={changeinput}
                                 placeholder="******" 
+                                value={formData.password_confirm}
+                                onChange={handleChange}
                                 />
                             </div>
                         </div>
