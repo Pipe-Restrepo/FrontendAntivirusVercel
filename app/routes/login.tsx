@@ -32,21 +32,18 @@ export const action = async ({ request }: { request: Request }) => {
   );
 };
 
-// Saber si esta logueado o no
-export const loader: LoaderFunction = async ({ request }) => {
-  const token = await getCookie(request, "token");
-
-  if (token) {
-    return redirect("/news");
-  }
-
-  return null;
-};
 
 export default function Login() {
   const actionData = useActionData<typeof action>();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+
+  useEffect(() => {
+    const token = localStorage.getItem("user");
+    if (token) {
+      window.location.href = "/news";
+    }
+  }, []);
 
   // Mostrar Contraseña
   const [showPassword, setShowPassword] = useState(false);
@@ -63,12 +60,11 @@ export default function Login() {
       })
         .then((res) => res.json())
         .then((userData) => {
-            console.log("Usuario autenticado:", userData);
             if (userData.id)
             {
                 localStorage.setItem("user", JSON.stringify(userData));//guarda el usuario
-                console.log("Usuario autenticado:", userData);
             }
+            window.location.href = "/login"
         })
         .catch(() => {
           Swal.fire({
@@ -78,7 +74,7 @@ export default function Login() {
           });
         });
     } else if (actionData?.error) {
-      // 🔹 Si el login falla, mostrar Swal
+      // Si el login falla, mostrar Swal
       Swal.fire({
         icon: "error",
         title: "Error de autenticación",

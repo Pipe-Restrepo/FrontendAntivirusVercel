@@ -23,10 +23,8 @@ export default function Header({ user }: HeaderProps) {
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
-    //console.log("Datos crudos de localStorage:", userData);
     if (userData) {
       setStoredUser(JSON.parse(userData));
-      console.log("datos de UserData: "+ userData)
     }
   }, []);
 
@@ -52,10 +50,10 @@ export default function Header({ user }: HeaderProps) {
               <Link to="/" className="text-white hover:text-yellow-300">
                 Inicio
               </Link>
-              <Link to="?services" className="text-white hover:text-yellow-300">
+              <Link to="/?services" className="text-white hover:text-yellow-300">
                 Servicios
               </Link>
-              <Link to={isAuthenticated ? "/news" : "?oportunities"}  className="text-white hover:text-yellow-300">
+              <Link to={isAuthenticated ? "/news" : "/?oportunities"}  className="text-white hover:text-yellow-300">
                 Oportunidades
               </Link>
             </nav>
@@ -79,7 +77,7 @@ export default function Header({ user }: HeaderProps) {
             {isAuthenticated ? (
               <div className="flex items-center space-x-2">
                 <Link
-                  to="/profile"
+                  to="/userProfile"
                   className="flex items-center gap-2 text-white text-lg font-semibold px-4 py-2 rounded-lg 
              hover:text-gray-300 transition-all duration-300 ease-in-out"
                 >
@@ -97,7 +95,7 @@ export default function Header({ user }: HeaderProps) {
                   </Link>
                 )}
 
-                <form method="post" action="/logout">
+                <form method="post" action="/logout" onSubmit={(e) => { e.preventDefault(); localStorage.removeItem("user"); window.location.href = "/"; }}>
                   <button
                     type="submit"
                     className="px-5 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white text-base rounded-lg font-bold shadow-md hover:from-red-600 hover:to-red-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"

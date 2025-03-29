@@ -43,25 +43,32 @@ export default function News() {
   const [filters, setFilters] = useState({
     searchName: "",
     searchUbication: "",
-    searchDate: "",
+    startDate: "",
+    endDate: "",
     searchType: "",
   });
 
   // Filtrar oportunidades
   const filteredOpportunities = opportunities.filter((opportunity) => {
-    //console.log(opportunity)
+    const opportunityDate = opportunity.adicional_dates ? new Date(opportunity.adicional_dates) : null;
+    const start = filters.startDate ? new Date(filters.startDate) : null;
+    const end = filters.endDate ? new Date(filters.endDate) : null;
+  
     return (
       (filters.searchName === "" || opportunity.name.toLowerCase().includes(filters.searchName.toLowerCase())) &&
       (filters.searchUbication === "" ||
         (opportunity.institution?.ubication || "").toLowerCase().includes(filters.searchUbication.toLowerCase())) &&
-      (filters.searchDate === "" || (opportunity.adicional_dates || "").includes(filters.searchDate)) &&
-      (filters.searchType === "" || opportunity.type.toLowerCase().includes(filters.searchType.toLowerCase()))
+      (filters.searchType === "" || opportunity.type.toLowerCase().includes(filters.searchType.toLowerCase())) &&
+      (!opportunityDate || 
+        (!start || opportunityDate >= start) && 
+        (!end || opportunityDate <= end))
     );
   });
 
   return (
     <div className="flex flex-col gap-7 items-center justify-center p-px sp translate-y-20">
-      <h1 className="text-5xl font-bold p-8">NOVEDADES</h1>
+      
+      <h1 className=" p-8">Novedades</h1>
       <div className="relative flex justify-center w-3/4 h-60">
         <Carousel />
       </div>
@@ -71,7 +78,7 @@ export default function News() {
 
       {/* Oportunidades filtradas */}
       <section className="w-full md:w-11/12 min-h-[256px] flex-grow mb-44 px-4">
-        <div className="grid grid-cols-4 gap-10 w-full">
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-10 w-full">
           {filteredOpportunities.map((opportunity, index) => (
             <OpportunityCard key={index} opportunity={opportunity} />
           ))}

@@ -26,6 +26,11 @@ export default function FormRegister() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!formData.name || !formData.lastname || !formData.email || !formData.password || !formData.password_confirm) {
+            Swal.fire("Error", "Todos los campos son obligatorios", "error");
+            return;
+        }
         if (formData.password !== formData.password_confirm) {
             Swal.fire("Error", "Las contraseñas no coinciden", "error");
             return;
@@ -50,7 +55,19 @@ export default function FormRegister() {
             const result = await response.json();
             
             if (response.ok) {
+<<<<<<< HEAD
                 Swal.fire("Éxito", "Cuenta creada correctamente", "success");
+=======
+                Swal.fire({
+                    title: "Éxito",
+                    text: "Cuenta creada correctamente",
+                    icon: "success",
+                    timer: 3000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = "/login";
+                });
+>>>>>>> e3f2fdebfb3fdad18ccdbfe3323dd214d326c8c3
             } else {
                 Swal.fire("Error", result.message || "Error al registrar", "error");
             }
