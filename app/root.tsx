@@ -11,6 +11,7 @@ import { tokenCookie } from "./utils/cookies";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import { useEffect, useState } from "react";
 
 import "./tailwind.css";
 
@@ -51,6 +52,17 @@ export const links: LinksFunction = () => [
 export default function App() {
   const { isAuthenticated, user } = useLoaderData<typeof loader>();
 
+  // Estado para almacenar el usuario desde localStorage
+  const [storedUser, setStoredUser] = useState<UserSession["user"] | null>(null);
+
+  // Cargar usuario desde localStorage cuando el componente se monta
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setStoredUser(JSON.parse(savedUser));
+    }
+  }, []);
+
   return (
     <html lang="es" className="h-full">
       <head>
@@ -60,7 +72,7 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full flex flex-col">
-        <Header isAuthenticated={isAuthenticated} user={user} />
+        <Header isAuthenticated={isAuthenticated} user={storedUser || user} />
         <main className="flex-grow">
           <Outlet />
         </main>
