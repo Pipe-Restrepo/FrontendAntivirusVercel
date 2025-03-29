@@ -74,7 +74,7 @@ export default function Login() {
           });
         });
     } else if (actionData?.error) {
-      // 🔹 Si el login falla, mostrar Swal
+      // Si el login falla, mostrar Swal
       Swal.fire({
         icon: "error",
         title: "Error de autenticación",
