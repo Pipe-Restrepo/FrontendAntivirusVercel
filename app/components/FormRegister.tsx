@@ -55,9 +55,6 @@ export default function FormRegister() {
             const result = await response.json();
             
             if (response.ok) {
-<<<<<<< HEAD
-                Swal.fire("Éxito", "Cuenta creada correctamente", "success");
-=======
                 Swal.fire({
                     title: "Éxito",
                     text: "Cuenta creada correctamente",
@@ -67,7 +64,6 @@ export default function FormRegister() {
                 }).then(() => {
                     window.location.href = "/login";
                 });
->>>>>>> e3f2fdebfb3fdad18ccdbfe3323dd214d326c8c3
             } else {
                 Swal.fire("Error", result.message || "Error al registrar", "error");
             }
