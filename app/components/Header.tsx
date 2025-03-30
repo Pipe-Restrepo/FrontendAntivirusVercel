@@ -66,7 +66,7 @@ export default function Header({ user }: HeaderProps) {
           {!isLoading && (
             isAuthenticated ? (
               <div className="flex items-center space-x-4">
-                <Link to="/profile" className="flex items-center gap-2 text-white text-lg font-semibold px-4 py-2 rounded-lg hover:text-gray-300 transition-all duration-300">
+                <Link to="/userProfile" className="flex items-center gap-2 text-white text-lg font-semibold px-4 py-2 rounded-lg hover:text-gray-300 transition-all duration-300">
                   <FontAwesomeIcon icon={faUserCircle} className="text-2xl" />
                   <span className="whitespace-nowrap">{currentUser?.name}</span>
                 </Link>

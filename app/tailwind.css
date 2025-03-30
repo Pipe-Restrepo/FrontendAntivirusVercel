@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap');
+
 :root {
   --primary-text: #1D1856;
   --background-light: #FAFAFA;
@@ -27,8 +29,9 @@ body {
 
 h1 {
   color: var(--primary-text);
-  font-family: "Raleway";
-  font-size: 5.3rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 700;
 }
 
 .dark h1 {
