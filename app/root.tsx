@@ -10,6 +10,7 @@ import {
 import { tokenCookie } from "./utils/cookies";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import FloatingWompiButton from "./components/Wompi";
 import type { LinksFunction, LoaderFunction } from "@remix-run/node";
 import { useEffect, useState } from "react";
 
@@ -76,6 +77,7 @@ export default function App() {
         <main className="flex-grow">
           <Outlet />
         </main>
+        <FloatingWompiButton />
         <Footer />
         <ScrollRestoration />
         <Scripts />

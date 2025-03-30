@@ -47,14 +47,21 @@ export default function Header({ user }: HeaderProps) {
 
             {/* Navbar */}
             <nav className="hidden md:flex space-x-6">
-              <Link to="/" className="text-white hover:text-yellow-300">
+              <Link to="/" className="relative text-white hover:text-yellow-400 group">
                 Inicio
+                <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
               </Link>
-              <Link to="/?services" className="text-white hover:text-yellow-300">
+              <Link to="/?services" className="relative text-white hover:text-yellow-400 group">
                 Servicios
+                <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
               </Link>
-              <Link to={isAuthenticated ? "/news" : "/?oportunities"}  className="text-white hover:text-yellow-300">
+              <Link to={isAuthenticated ? "/news" : "/?oportunities"} className="relative text-white hover:text-yellow-400 group">
                 Oportunidades
+                <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
+              </Link>
+              <Link to="/ourteam" className="relative text-white hover:text-yellow-400 group">
+                Sobre Nosotros
+                <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
               </Link>
             </nav>
 
