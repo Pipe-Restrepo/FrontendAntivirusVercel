@@ -26,7 +26,7 @@ export default function Header({ user }: HeaderProps) {
     if (userData) {
       setStoredUser(JSON.parse(userData));
     }
-    setIsLoading(false); 
+    setIsLoading(false);
   }, []);
 
   const currentUser = user || storedUser;
@@ -34,7 +34,7 @@ export default function Header({ user }: HeaderProps) {
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
-      <nav className="flex items-center justify-between bg-gradient-to-b from-[#32526E] to-[#4B79A1] dark:bg-[#172a41] p-4 lg:px-20 w-full h-20 fixed top-0 z-50 shadow-lg">
+      <nav className="flex items-center justify-between bg-gradient-to-b from-[#32526E] to-[#4B79A1] dark:bg-[#172a41] p-4 lg:px-20 w-full h-20 fixed top-0 z-50 shadow-lg sticky">
         <div className="flex items-center space-x-5 pl-4 lg:pl-20 w-full justify-between md:justify-start">
           <Link to="/" className="text-white logo">
             <img
@@ -46,9 +46,22 @@ export default function Header({ user }: HeaderProps) {
 
           {/* Navbar */}
           <nav className="hidden md:flex space-x-6">
-            <Link to="/" className="text-white hover:text-yellow-300">Inicio</Link>
-            <Link to="/?services" className="text-white hover:text-yellow-300">Servicios</Link>
-            <Link to={isAuthenticated ? "/news" : "/?oportunities"} className="text-white hover:text-yellow-300">Oportunidades</Link>
+            <Link to="/" className="relative text-white hover:text-yellow-400 group">
+              Inicio
+              <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
+            </Link>
+            <Link to="/?services" className="relative text-white hover:text-yellow-400 group">
+              Servicios
+              <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
+            </Link>
+            <Link to={isAuthenticated ? "/news" : "/?oportunities"} className="relative text-white hover:text-yellow-400 group">
+              Oportunidades
+              <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
+            </Link>
+            <Link to="/ourteam" className="relative text-white hover:text-yellow-400 group">
+              Sobre Nosotros
+              <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
+            </Link>
           </nav>
 
           {/* Menú hamburguesa para móviles */}
@@ -99,19 +112,27 @@ export default function Header({ user }: HeaderProps) {
                 {!isLoginPage && (
                   <Link
                     to="/login"
-                    className="relative flex items-center justify-between px-6 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow transition w-[120px] min-w-[120px]"
+                    className="relative flex items-center justify-between px-6 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow transition w-[120px]"
                   >
                     Ingresa
-                    <img src="/assets/images/flecha_azul.png" alt="Flecha azul" className="w-8 h-8" />
+                    <img
+                      src="/assets/images/flecha_azul.png"
+                      alt="Flechas azul"
+                      className="w-8 h-8"
+                    />
                   </Link>
                 )}
                 {!isRegisterPage && (
                   <Link
                     to="/register"
-                    className="relative flex items-center justify-between px-6 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow transition w-[140px] min-w-[140px]"
+                    className="relative flex items-center justify-between px-6 py-2 bg-white text-[#32526E] rounded-md font-semibold shadow transition w-[140px] "
                   >
                     Regístrate
-                    <img src="/assets/images/flecha_colores.png" alt="Flecha de colores" className="w-8 h-8" />
+                    <img
+                      src="/assets/images/flecha_colores.png"
+                      alt="Flechas azul"
+                      className="w-8 h-8"
+                    />
                   </Link>
                 )}
               </div>
