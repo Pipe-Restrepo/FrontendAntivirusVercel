@@ -42,7 +42,7 @@ export default function CategoryInstitutionAdmin() {
 
     // Helper function to fetch data
     const fetchData = async (url: string, options: RequestInit = {}) => {
-        setLoading(true); // Iniciar carga
+        setLoading(true);
         const token = localStorage.getItem("token");
         if (!token) throw new Error("No token found");
 
@@ -56,23 +56,24 @@ export default function CategoryInstitutionAdmin() {
         try {
             const response = await fetch(url, { ...defaultOptions, ...options });
             if (!response.ok) {
-                if(response.status === 204){
-                    return; //No Content, successful DELETE for example.
+                if (response.status === 200) {
+                    return; // No Content, successful DELETE
                 }
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorData = await response.json();
+                throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
             }
 
             const contentType = response.headers.get("content-type");
             if (contentType && contentType.includes("application/json")) {
                 return await response.json();
             }
-            return; //For cases like successful DELETE without json.
+            return; // Successful DELETE without json
         } catch (error) {
             console.error("Fetch error:", error);
-            Swal.fire({ icon: 'error', title: 'Error', text: 'Error al comunicarse con el servidor.' });
+            Swal.fire({ icon: 'error', title: 'Error', text: error.message || 'Error al comunicarse con el servidor.' });
             throw error;
         } finally {
-            setLoading(false); // Finalizar carga
+            setLoading(false);
         }
     };
 
@@ -95,7 +96,8 @@ export default function CategoryInstitutionAdmin() {
                 method: "POST",
                 body: JSON.stringify(newCategory),
             });
-            setCategories([...categories, createdCategory]);
+            // Actualiza el estado con la nueva categoría y su ID generado
+            setCategories(prevCategories => [...prevCategories, createdCategory]);
             setNewCategory({ name: "", description: "" });
             setShowCategoryForm(false);
             Swal.fire('Creado', 'La categoría ha sido creada.', 'success');
@@ -107,23 +109,28 @@ export default function CategoryInstitutionAdmin() {
     const updateCategoryData = async () => {
         if (!editingCategory) return;
         try {
-            const updatedCategory = await fetchData(
+            await fetchData(
                 `${API_BASE_URL}/Categories/${editingCategory.id}`,
                 {
                     method: "PUT",
                     body: JSON.stringify(editingCategory),
                 }
             );
+
+            // Actualiza el estado con la categoría editada
             setCategories(
-                categories.map((cat) => (cat.id === updatedCategory.id ? updatedCategory : cat))
+                prevCategories => prevCategories.map((cat) => 
+                    cat.id === editingCategory.id ? editingCategory : cat
+                )
             );
+
             setEditingCategory(null);
             Swal.fire('Actualizado', 'La categoría ha sido actualizada.', 'success');
         } catch (error) {
             Swal.fire({ icon: 'error', title: 'Error', text: error.message });
         }
     };
-
+    
     const deleteCategoryData = async (categoryId: string) => {
         Swal.fire({
             title: '¿Estás seguro?',
@@ -140,6 +147,7 @@ export default function CategoryInstitutionAdmin() {
                     await fetchData(`${API_BASE_URL}/Categories?id=${categoryId}`, {
                         method: "DELETE",
                     });
+                    // Actualiza el estado eliminando la categoría
                     setCategories((prevCategories) =>
                         prevCategories.filter((cat) => cat.id !== categoryId)
                     );
@@ -152,7 +160,7 @@ export default function CategoryInstitutionAdmin() {
         });
     };
 
-    const fetchInstitutionsData = async () => {
+    const fetchInstitutions = async () => {
         try {
             const data = await fetchData(`${API_BASE_URL}/Institutions`);
             setInstitutions(data);
@@ -171,7 +179,8 @@ export default function CategoryInstitutionAdmin() {
                 method: "POST",
                 body: JSON.stringify(newInstitution),
             });
-            setInstitutions([...institutions, createdInstitution]);
+            // Actualiza el estado con la nueva institución y su ID generado
+            setInstitutions(prevInstitutions => [...prevInstitutions, createdInstitution]);
             setNewInstitution({
                 name: "",
                 ubication: "",
@@ -191,18 +200,21 @@ export default function CategoryInstitutionAdmin() {
     const updateInstitutionData = async () => {
         if (!editingInstitution) return;
         try {
-            const updatedInstitution = await fetchData(
+            await fetchData(
                 `${API_BASE_URL}/Institutions/${editingInstitution.id}`,
                 {
                     method: "PUT",
                     body: JSON.stringify(editingInstitution),
                 }
             );
+    
+            // Actualiza el estado con la institución editada
             setInstitutions(
-                institutions.map((inst) =>
-                    inst.id === updatedInstitution.id ? updatedInstitution : inst
+                prevInstitutions => prevInstitutions.map((inst) =>
+                    inst.id === editingInstitution.id ? editingInstitution : inst
                 )
             );
+    
             setEditingInstitution(null);
             Swal.fire('Actualizado', 'La institución ha sido actualizada.', 'success');
         } catch (error) {
@@ -226,6 +238,7 @@ export default function CategoryInstitutionAdmin() {
                     await fetchData(`${API_BASE_URL}/Institutions?id=${institutionId}`, {
                         method: "DELETE",
                     });
+                    // Actualiza el estado eliminando la institución
                     setInstitutions((prevInstitutions) =>
                         prevInstitutions.filter((inst) => inst.id !== institutionId)
                     );
@@ -240,7 +253,7 @@ export default function CategoryInstitutionAdmin() {
 
     useEffect(() => {
         fetchCategories();
-        fetchInstitutionsData();
+        fetchInstitutions();
     }, []);
 
     return (

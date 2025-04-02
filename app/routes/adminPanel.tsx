@@ -141,40 +141,66 @@ export default function AdminPanel() {
       }
     });
   };
-
   const deleteOpportunityData = async (opportunityId: string) => {
     Swal.fire({
-      title: '¿Estás seguro?',
-      text: "No podrás revertir esto.",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar',
+        title: '¿Estás seguro?',
+        text: "No podrás revertir esto.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
     }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          await fetchData(`${API_BASE_URL}/Opportunities?id=${opportunityId}`, {
-            method: "DELETE",
-          });
-          setAllOpportunities((prev) => prev.filter((opp) => opp.id !== opportunityId));
-          Swal.fire(
-            'Eliminado',
-            'La oportunidad ha sido eliminada.',
-            'success'
-          );
-        } catch (error) {
-          console.error("Error deleting opportunity:", error);
-          Swal.fire(
-            'Error',
-            'No se pudo eliminar la oportunidad.',
-            'error'
-          );
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/Opportunities?id=${opportunityId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                });
+
+                if (response.ok) {
+                    setAllOpportunities((prev) => prev.filter((opp) => opp.id !== opportunityId));
+                    Swal.fire(
+                        'Eliminado',
+                        'La oportunidad ha sido eliminada.',
+                        'success'
+                    );
+                } else if (response.status === 404) {
+                    Swal.fire(
+                        'Error',
+                        'La oportunidad no fue encontrada.',
+                        'error'
+                    );
+                } else if (response.status === 400) {
+                    Swal.fire(
+                        'Error',
+                        'Petición incorrecta.',
+                        'error'
+                    );
+                } else if (response.status === 500) {
+                    Swal.fire(
+                        'Error',
+                        'Error interno del servidor',
+                        'error'
+                    );
+                } else {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+            } catch (error) {
+                console.error("Error deleting opportunity:", error);
+                Swal.fire(
+                    'Error',
+                    'No se pudo eliminar la oportunidad.',
+                    'error'
+                );
+            }
         }
-      }
     });
-  };
+};
 
   const handleDeleteClick = (opportunity: any) => {
     setSelectedOpportunity(opportunity);
