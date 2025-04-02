@@ -10,6 +10,7 @@ import { api } from "~/service/api";
 export const loader: LoaderFunction = async ({ request }) => {
   try {
     const opportunities = await api("/Opportunities", "GET", undefined, {}, request);
+    console.log ("impimientdo oportunities" + opportunities)
 
     if (!opportunities || !Array.isArray(opportunities)) {
       console.error("Error: La API no devolvió un array válido.", opportunities);
@@ -19,10 +20,10 @@ export const loader: LoaderFunction = async ({ request }) => {
     const updatedOpportunities = await Promise.all(
       opportunities.map(async (opportunity) => {
         try {
-          const institution = await api(`/Institutions/${opportunity.institutionId}`, "GET", undefined, {}, request);
+          const institution = await api(`/Institutions/${opportunity.institution_id}`, "GET", undefined, {}, request);
           return { ...opportunity, institution };
         } catch (error) {
-          console.error(`Error obteniendo la institución ${opportunity.institutionId}:`, error);
+          console.error(`Error obteniendo la institución ${opportunity.institution_id}:`, error);
           return { ...opportunity, institution: null };
         }
       })
