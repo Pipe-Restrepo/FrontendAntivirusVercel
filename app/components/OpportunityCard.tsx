@@ -33,8 +33,7 @@ export default function OpportunityCard({
   const [showModal, setShowModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteId, setFavoriteId] = useState<number | null>(null); // Guarda el ID en caso de existir
-  const [modalTop, setModalTop] = useState(0); //para almacenar la posicion del modal
-
+  
   //consulta el Back para saber si la oportunidad ya es favorita y actualiza el estado de isFavorite
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -133,9 +132,8 @@ export default function OpportunityCard({
     }
   };
 
+  
   const handleOpenModal = () => {
-    setModalTop(window.scrollY + window.innerHeight / 2); // centrar el modal en la vista actual
-    //document.body.style.overflow = "hidden"; //
     setShowModal(true);
   };
 
@@ -143,7 +141,7 @@ export default function OpportunityCard({
     <>
       {/* Tarjeta */}
       <div
-        className="bg-white text-gray-700 shadow-lg border rounded-lg  h-auto max-w-full cursor-pointer hover:scale-105 transition-transform"
+        className="bg-white  text-gray-700 shadow-lg border rounded-lg  h-auto max-w-full cursor-pointer hover:scale-105 transition-transform"
         onClick={handleOpenModal}
         /*esto se agrega porque div no es un elemento interactivo asi se que se maneja eventos de teclado*/
         onKeyDown={(e) => {
@@ -194,12 +192,6 @@ export default function OpportunityCard({
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50">
           <div
             className="bg-white p-6 rounded-lg shadow-lg relative w-3/4 max-w-lg"
-            style={{
-              position: "absolute",
-              top: `${modalTop}px`,
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
           >
             <button
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"

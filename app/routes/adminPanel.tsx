@@ -240,12 +240,13 @@ export default function AdminPanel() {
 
   return (
     <div className="flex flex-col gap-8 p-8">
-      <h1 className="text-3xl font-semibold text-center mb-6">Panel de Administración</h1>
+      <div className="bg-white w-full h-7 "></div> {/*para la cabecera */}
+      <h1 className="text-3xl font-semibold text-center pt-10 mb-6">Panel de Administración</h1>
 
       <div className="flex justify-center gap-4 mb-6">
         <button
           className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
-          onClick={() => navigate("/createOpportunity")}
+          onClick={() => navigate("/addOpportunity")}
         >
           Crear Nueva Oportunidad
         </button>
@@ -302,7 +303,7 @@ export default function AdminPanel() {
         </div>
       )}
 
-      <div className="w-full bg-white rounded-lg shadow p-6">
+      <div className="w-full bg-white rounded-lg shadow p-6 ">
         <h2 className="text-2xl font-semibold mb-4">Usuarios Registrados</h2>
         <ul className="space-y-2">
           {users.length > 0 ? (
@@ -334,7 +335,7 @@ export default function AdminPanel() {
       </div>
 
       {selectedUser && (
-        <div className="w-full bg-white rounded-lg shadow p-6">
+        <div className="w-full bg-white rounded-lg shadow p-6 mb-44">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">Oportunidades de {selectedUser.name}</h3>
             <button
