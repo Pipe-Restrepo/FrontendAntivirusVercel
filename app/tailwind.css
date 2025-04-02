@@ -12,6 +12,10 @@
   --border-dark: #374151;
 }
 
+#root > div > div.contenedor.my-7 > div > div > div.MuiFormControl-root.MuiFormControl-marginNormal.MuiFormControl-fullWidth.MuiTextField-root.buscador.css-17vbkzs-MuiFormControl-root-MuiTextField-root.dark{
+  background-color: #6dd73f;
+}
+
 html {
   @apply transition-colors duration-300;
 }
