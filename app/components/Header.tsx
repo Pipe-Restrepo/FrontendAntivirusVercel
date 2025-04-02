@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "@remix-run/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { MdDashboardCustomize } from "react-icons/md";
+import { IoMdExit } from "react-icons/io";
 
 interface HeaderProps {
   isAuthenticated: boolean;
@@ -50,12 +52,12 @@ export default function Header({ user }: HeaderProps) {
               Inicio
               <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
             </Link>
-            <Link to="/?services" className="relative text-white hover:text-yellow-400 group">
-              Servicios
-              <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
-            </Link>
             <Link to={isAuthenticated ? "/news" : "/?oportunities"} className="relative text-white hover:text-yellow-400 group">
               Oportunidades
+              <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
+            </Link>
+            <Link to="/?services" className="relative text-white hover:text-yellow-400 group">
+              Servicios
               <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
             </Link>
             <Link to="/ourteam" className="relative text-white hover:text-yellow-400 group">
@@ -79,34 +81,55 @@ export default function Header({ user }: HeaderProps) {
           {!isLoading && (
             isAuthenticated ? (
               <div className="flex items-center space-x-4">
-                <Link to="/userProfile" className="flex items-center gap-2 text-white text-lg font-semibold px-4 py-2 rounded-lg hover:text-gray-300 transition-all duration-300">
-                  <FontAwesomeIcon icon={faUserCircle} className="text-2xl" />
-                  <span className="whitespace-nowrap">{currentUser?.name}</span>
-                </Link>
+            {currentUser?.rol === "admin" && (
+              <Link 
+                // to="/adminPanel" 
+                to="/dashboard"
+                className="text-white text-lg font-semibold px-4 py-2 rounded-lg hover:text-gray-300 transition-all"
+              >
+                <MdDashboardCustomize className="text-white h-10 w-10 hover:text-yellow-400 group"/>
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            )}
 
-                {currentUser?.rol === "admin" && (
-                  <Link to="/adminPanel" className="text-white text-lg font-semibold px-4 py-2 rounded-lg hover:text-gray-300 transition-all">
-                    Panel Admin
-                  </Link>
-                )}
-
-                <form
-                  method="post"
-                  action="/logout"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    localStorage.removeItem("user");
-                    window.location.href = "/";
-                  }}
+            {/* Contenedor del nombre y el botón */}
+            <div className="flex flex-col items-center">
+            <Link 
+              to="/userProfile" 
+              className="relative text-white text-lg font-bold hover:text-yellow-400 group whitespace-nowrap"
+            >
+              {currentUser?.name}
+              <span className="absolute left-1/2 bottom-0 w-0 h-[2px] bg-yellow-400 transition-all duration-400 group-hover:w-full group-hover:left-0"></span>
+            </Link>
+            
+              <form
+                method="post"
+                action="/logout"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  localStorage.removeItem("user");
+                  window.location.href = "/";
+                }}
+                className="mt-2"
+              >
+                <button
+                  type="submit"
+                  className="px-2 py-1 bg-[#D899A2] text-red-700 text-sm rounded-md font-semibold shadow-md hover:bg-[#C0808A] hover:shadow-lg transition-all duration-300 ease-in-out flex items-center gap-2 whitespace-nowrap"
                 >
-                  <button
-                    type="submit"
-                    className="px-5 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white text-base rounded-lg font-bold shadow-md hover:from-red-600 hover:to-red-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
-                  >
-                    Salir
-                  </button>
-                </form>
-              </div>
+                  <IoMdExit className="text-red-700 h-5 w-5" />
+                  Cerrar Sesión
+                </button>
+              </form>
+            </div>
+
+            {/* Icono de usuario a la derecha */}
+            <Link 
+              to="/userProfile" 
+              className="text-white text-lg font-semibold transition-all duration-300"
+            >
+              <FontAwesomeIcon icon={faUserCircle} className="text-4xl h-14 w-14 ml-5" />
+            </Link>
+          </div>
             ) : (
               <div className="flex items-center space-x-4">
                 {!isLoginPage && (
