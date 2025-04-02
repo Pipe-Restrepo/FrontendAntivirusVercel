@@ -67,8 +67,8 @@ export default function News() {
   });
 
   return (
-    <div className="flex flex-col gap-7 items-center justify-center p-px sp translate-y-20">
-      
+    <div className="flex flex-col gap-7 items-center justify-center p-px sp ">
+       <div className="bg-white w-full h-7 "></div> {/* para la cabecera */}
       <h1 className=" p-8">Novedades</h1>
       <div className="relative flex justify-center w-3/4 h-60">
         <Carousel />
@@ -78,7 +78,7 @@ export default function News() {
       <Filters onFilterChange={setFilters} />
 
       {/* Oportunidades filtradas */}
-      <section className="w-full md:w-11/12 min-h-[256px] flex-grow mb-44 px-4">
+      <section className="w-full md:w-11/12 min-h-[256px] flex-grow mb-4 px-4">
         <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-10 w-full">
           {filteredOpportunities.map((opportunity, index) => (
             <OpportunityCard key={index} opportunity={opportunity} />

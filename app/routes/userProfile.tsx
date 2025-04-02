@@ -60,11 +60,11 @@ export default function UserProfile() {
   }, [userId]); // Se ejecutará cuando userId tenga un valor
 
   return (
-    <div className="flex flex-col gap-7 items-center justify-center p-10 translate-y-20 sp">
-     {/* <div className="bg-white w-full h-7 "></div> para la cabecera */}
+    <div className="flex flex-col gap-7 items-center justify-center p-10 sp">
+     <div className="bg-white w-full h-7 "></div> {/*para la cabecera */}
       <h1 className="font-bold" >Mis Favoritos</h1>
       
-      <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-10 w-full p-2 mb-44">
+      <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-10 w-full p-2 mb-4">
         {opportunities.length > 0 ? (
           opportunities.map((opportunity) => (
             <OpportunityCard
