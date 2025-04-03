@@ -5,6 +5,8 @@ import Carousel from "~/components/CarouselNews";
 import OpportunityCard from "~/components/OpportunityCard";
 import Filters from "~/components/Filters";
 import { api } from "~/service/api";
+import { PiStudentFill } from "react-icons/pi";
+import { LuNotebookPen } from "react-icons/lu";
 
 // Loader para obtener las oportunidades desde el backend
 export const loader: LoaderFunction = async ({ request }) => {
@@ -69,13 +71,29 @@ export default function News() {
   return (
     <div className="flex flex-col gap-7 items-center justify-center p-px sp ">
        <div className="bg-white w-full h-7 "></div> {/* para la cabecera */}
-      <h1 className=" p-8">Novedades</h1>
+      <div className="flex flex-col mb-4 self-start text-left w-3/4 ml-48">
+        <div className="flex items-center space-x-4 mt-12">
+          <LuNotebookPen size={48} className="text-[#2C395B]" />
+          <h1 className="font-semibold text-3xl text-[#1D1856]">Novedades</h1>
+        </div>
+        <small className="text-gray-600 mt-2 text-2xl">
+          Explora las últimas novedades educativas y mantente al día con información de tendencias para el aprendizaje.
+        </small>
+      </div>
       <div className="relative flex justify-center w-3/4 h-60">
         <Carousel />
       </div>
 
       {/* Componente de filtros */}
       <Filters onFilterChange={setFilters} />
+
+      <div className="flex flex-col mb-4">
+          <div className="flex items-center space-x-4">
+              <PiStudentFill size={48} className="text-[#2C395B]" />
+              <h1 className="font-semibold text-3xl text-[#1D1856]">¡Oportunidades Para Estudiar!</h1>
+          </div>
+          <small className='text-gray-600 mt-2 text-2xl'> Descubre nuevas oportunidades para estudiar y accede a becas, cursos y bootcamps que impulsarán tu futuro académico.</small>
+      </div>
 
       {/* Oportunidades filtradas */}
       <section className="w-full md:w-11/12 min-h-[256px] flex-grow mb-4 px-4">

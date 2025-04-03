@@ -1,6 +1,7 @@
 import { useState } from "react";
 import casa from "/assets/inicio/casa.svg";
 import { Link } from "react-router-dom";
+import { IoMdExit } from "react-icons/io";
 
 export default function Inicio() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function Inicio() {
                 <div className="w-7/12 flex justify-center items-center">
                     <div className="w-5/6">
                         <div>
-                            <h1 className="text-[80px] font-bold text-[#1D1856] pb-5 leading-none">¡Tu futuro inicia aquí!</h1>
+                            <h1 className="text-[80px] font-bold text-[#1D1856] pb-5 leading-none whitespace-nowrap">¡Tu futuro inicia aquí!</h1>
                         </div>
                         <div>
                             <p className="text-justify text-2xl font-normal">
@@ -47,12 +48,7 @@ export default function Inicio() {
                     <div className="bg-gradient-to-b from-[#32526E] to-[#4B79A1] dark:bg-[#172a41] p-6 rounded-lg shadow-lg w-1/3">
                         <div className="flex justify-between items-center border-b pb-2">
                             <h2 className="text-2xl font-bold text-white">Contáctanos</h2>
-                            <button 
-                                className="text-white hover:text-red-500 text-2xl"
-                                onClick={() => setIsModalOpen(false)}
-                            >
-                                &times;
-                            </button>
+                            <button onClick={() => setIsModalOpen(false)}><IoMdExit className="text-red-700 h-7 w-7" /></button>
                         </div>
                         <div>
                             <img
@@ -66,24 +62,28 @@ export default function Inicio() {
                                 href="https://www.facebook.com/antivirusparaladesercion/?locale=es_LA"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                className="relative group flex items-center justify-center"
                                 >
+                                <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
                                 <img
                                     src="/assets/icons/icono-facebook.png"
                                     alt="Facebook"
-                                    className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+                                    className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
                                 />
                                 </a>
 
                                 {/* LinkedIn */}
                                 <a
-                                href="https://www.linkedin.com/in/somosantivirus"
+                                href="https://www.linkedin.com/company/antivirus-desercion/?originalSubdomain=co"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                className="relative group flex items-center justify-center"
                                 >
+                                <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
                                 <img
                                     src="/assets/icons/icono-linkedin.png"
                                     alt="LinkedIn"
-                                    className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+                                    className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
                                 />
                                 </a>
 
@@ -92,11 +92,13 @@ export default function Inicio() {
                                 href="https://www.instagram.com/somosantivirus"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                className="relative group flex items-center justify-center"
                                 >
+                                <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
                                 <img
                                     src="/assets/icons/icono-instagram.png"
                                     alt="Instagram"
-                                    className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+                                    className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
                                 />
                                 </a>
 
@@ -105,11 +107,13 @@ export default function Inicio() {
                                 href="https://www.youtube.com/c/AntivirusparalaDeserci%C3%B3n"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                className="relative group flex items-center justify-center"
                                 >
+                                <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
                                 <img
                                     src="/assets/icons/icono-youtube.png"
                                     alt="YouTube"
-                                    className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+                                    className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
                                 />
                                 </a>
 
@@ -118,11 +122,13 @@ export default function Inicio() {
                                 href="https://wa.me/573217066273"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                className="relative group flex items-center justify-center"
                                 >
+                                <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
                                 <img
                                     src="/assets/icons/icono-whatsapp.png"
                                     alt="WhatsApp"
-                                    className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+                                    className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
                                 />
                                 </a>
 

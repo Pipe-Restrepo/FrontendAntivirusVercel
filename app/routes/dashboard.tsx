@@ -16,7 +16,7 @@ const data = [
     {
         id: 2,
         name: "Gestión de Instituciones",
-        enlace: "/usuarios",
+        enlace: "/institutions",
         icono: <MdMapsHomeWork   size={80} className="text-[#FAA307]"/>,
         color: "#FAA307",
         secondary: "#FBE1A5",
@@ -24,7 +24,7 @@ const data = [
     {
         id: 3,
         name: "Gestión de Categorías",
-        enlace: "/configuraciones",
+        enlace: "/categories",
         icono: <GiSpellBook size={80} className="text-[#0B8F84]" />,
         color: "#0B8F84",
         secondary: "#CCEDE8",
@@ -32,7 +32,7 @@ const data = [
     {
         id: 4,
         name: "Gestión de Oportunidades",
-        enlace: "/reportes",
+        enlace: "/oportunities",
         icono: <PiStudentFill size={80} className="text-[#4D3281]"/>,
         color: "#4D3281",
         secondary: "#D3C3E3",

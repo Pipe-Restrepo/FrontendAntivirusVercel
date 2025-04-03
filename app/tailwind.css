@@ -16,6 +16,10 @@
   background-color: #6dd73f;
 }
 
+.custom-tabs .ant-tabs-ink-bar {
+  background-color: #1D1856 !important;
+}
+
 html {
   @apply transition-colors duration-300;
 }

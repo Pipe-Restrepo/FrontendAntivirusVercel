@@ -7,6 +7,7 @@ import { FreeMode, Pagination } from "swiper/modules";
 import nodo from "/assets/inicio/nodo.svg"
 import velez from "/assets/inicio/velez.svg"
 import comfama from "/assets/inicio/comfama.svg"
+import { PiStudentFill } from "react-icons/pi";
 
 export default function Oportunity(){
         const SimulationBD=[
@@ -49,7 +50,11 @@ export default function Oportunity(){
         ]
     return (
         <div className="w-full">
-            <h2 className="text-[52px] text-[#1D1856] text-center font-bold py-20">¡Mira estás oportunidades! </h2>
+            <div className="flex items-center justify-center space-x-4">
+                <PiStudentFill size={48} className="text-[#2C395B]" />
+                <h2 className="text-[52px] text-[#1D1856] text-center font-bold py-20">¡Mira estás oportunidades! </h2>
+            </div>
+            
             <Swiper 
                 slidesPerView={3}
                 spaceBetween={10}

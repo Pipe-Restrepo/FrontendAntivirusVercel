@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { IoMdExit } from "react-icons/io";
 
 interface Opportunity {
   id: string;
@@ -164,9 +165,9 @@ export default function OpportunityCard({
         {/*contenedor de informacion */}
         <div className="p-3 ">
           <div className="relative mb-3 flex justify-between items-start">
-            <h3 className="text-xl font-bold">
+            <h4 className="text-lg font-bold text-[#1D1856]">
               {opportunity.institution?.name ?? "Desconocida"}
-            </h3>
+            </h4>
             {/*se agrega el boton favorito */}
             <button
               onClick={(e) => handleToggleFavorite(e)}
@@ -193,48 +194,48 @@ export default function OpportunityCard({
           <div
             className="bg-white p-6 rounded-lg shadow-lg relative w-3/4 max-w-lg"
           >
-            <button
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
-              onClick={() => setShowModal(false)}
-            >
-              ✖
-            </button>
-            <h2 className="text-2xl font-bold text-gray-600 py-2">
-              {opportunity.name}
-            </h2>
-            <p className="text-gray-600 py-1">
-              <strong>Ubicación: </strong>
+            <div className="flex justify-between items-center w-full">
+              <h1 className="text-2xl font-bold text-[#1D1856] py-2">
+                {opportunity.name}
+              </h1>
+              <button onClick={() => setShowModal(false)}>
+                <IoMdExit className="text-red-700 h-7 w-7" />
+              </button>
+            </div>
+            <div className='border-b-2 border-gray-300 my-4'></div>
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">Ubicación: </strong>
               {opportunity.institution?.ubication ?? "Desconocida"}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>Observación: </strong>
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">Observación: </strong>
               {opportunity.observation}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>Tipo: </strong>
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">Tipo: </strong>
               {opportunity.type}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>Descripción: </strong>
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">Descripción: </strong>
               {opportunity.description}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>Requisitos: </strong> {opportunity.requires}
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">Requisitos: </strong> {opportunity.requires}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>Guia: </strong> {opportunity.guide}
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">Guia: </strong> {opportunity.guide}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>Datos Adicionales: </strong> {opportunity.adicional_dates}
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">Datos Adicionales: </strong> {opportunity.adicional_dates}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>Canales De Servicio: </strong> {opportunity.guide}
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">Canales De Servicio: </strong> {opportunity.guide}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>Modalidad: </strong> {opportunity.modality}
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">Modalidad: </strong> {opportunity.modality}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>URL Universidad: </strong>{" "}
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">URL Universidad: </strong>{" "}
               <a
                 href={
                   opportunity.institution?.url_generalidades ?? "Desconocida"
@@ -249,8 +250,8 @@ export default function OpportunityCard({
             {/* rel="noopener noreferrer" evita los problemas de seguridad de target="_blank"
             noopener: Evita que la nueva página tenga acceso a la página original a través de window.opener.
             noreferrer: Además de lo anterior, también evita que se envíe información de referencia al nuevo sitio. */}
-            <p className="text-gray-600 py-1">
-              <strong>URL Oferta Academica: </strong>{" "}
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">URL Oferta Academica: </strong>{" "}
               <a
                 href={
                   opportunity.institution?.url_oferta_academica ?? "Desconocida"
@@ -262,8 +263,8 @@ export default function OpportunityCard({
                 {opportunity.institution?.url_generalidades ?? "Desconocida"}
               </a>{" "}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>URL Bienertar: </strong>{" "}
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">URL Bienertar: </strong>{" "}
               <a
                 href={opportunity.institution?.url_bienestar ?? "Desconocida"}
                 className="underline"
@@ -273,8 +274,8 @@ export default function OpportunityCard({
                 {opportunity.institution?.url_generalidades ?? "Desconocida"}
               </a>{" "}
             </p>
-            <p className="text-gray-600 py-1">
-              <strong>URL Admincion: </strong>{" "}
+            <p className="text-black py-1">
+              <strong className="text-[#1D1856]">URL Admincion: </strong>{" "}
               <a
                 href={opportunity.institution?.url_admision ?? "Desconocida"}
                 className="underline"
