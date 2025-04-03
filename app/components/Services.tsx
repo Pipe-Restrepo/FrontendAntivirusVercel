@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import vocation from '/assets/inicio/vocation.svg'
 import pedagogy from '/assets/inicio/pedagogy.svg'
 import test from '/assets/inicio/testVocational.svg'
-
+import { RiServiceFill } from "react-icons/ri";
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -57,7 +57,10 @@ export const Services = () => {
 
   return (
     <div className="w-full">
-        <h2 className="text-[52px] text-[#1D1856] text-center font-bold pb-10">Servicios</h2>
+        <div className="flex items-center justify-center space-x-4">
+            <RiServiceFill size={48} className="text-[#2C395B]" />
+            <h2 className="text-[52px] text-[#1D1856] text-center font-bold py-20">Servicios </h2>
+        </div>
         <Swiper
         slidesPerView={3}
         spaceBetween={30}

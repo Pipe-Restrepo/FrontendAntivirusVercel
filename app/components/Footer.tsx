@@ -24,24 +24,28 @@ const Footer = () => {
           href="https://www.facebook.com/antivirusparaladesercion/?locale=es_LA"
           target="_blank"
           rel="noopener noreferrer"
+          className="relative group flex items-center justify-center"
         >
+          <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
           <img
             src="/assets/icons/icono-facebook.png"
             alt="Facebook"
-            className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+            className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
           />
         </a>
 
         {/* LinkedIn */}
         <a
-          href="https://www.linkedin.com/in/somosantivirus"
+          href="https://www.linkedin.com/company/antivirus-desercion/?originalSubdomain=co"
           target="_blank"
           rel="noopener noreferrer"
+          className="relative group flex items-center justify-center"
         >
+          <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
           <img
             src="/assets/icons/icono-linkedin.png"
             alt="LinkedIn"
-            className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+            className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
           />
         </a>
 
@@ -50,11 +54,13 @@ const Footer = () => {
           href="https://www.instagram.com/somosantivirus"
           target="_blank"
           rel="noopener noreferrer"
+          className="relative group flex items-center justify-center"
         >
+          <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
           <img
             src="/assets/icons/icono-instagram.png"
             alt="Instagram"
-            className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+            className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
           />
         </a>
 
@@ -63,11 +69,13 @@ const Footer = () => {
           href="https://www.youtube.com/c/AntivirusparalaDeserci%C3%B3n"
           target="_blank"
           rel="noopener noreferrer"
+          className="relative group flex items-center justify-center"
         >
+          <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
           <img
             src="/assets/icons/icono-youtube.png"
             alt="YouTube"
-            className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+            className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
           />
         </a>
 
@@ -76,11 +84,13 @@ const Footer = () => {
           href="https://wa.me/573217066273"
           target="_blank"
           rel="noopener noreferrer"
+          className="relative group flex items-center justify-center"
         >
+          <span className="absolute w-14 h-14 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-125"></span>
           <img
             src="/assets/icons/icono-whatsapp.png"
             alt="WhatsApp"
-            className="w-10 h-10 invert brightness-0 hover:scale-110 transition-transform"
+            className="w-10 h-10 invert brightness-0 group-hover:scale-110 transition-transform relative"
           />
         </a>
 
