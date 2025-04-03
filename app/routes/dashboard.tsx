@@ -2,6 +2,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { MdMapsHomeWork } from "react-icons/md";
 import { GiSpellBook } from "react-icons/gi";
 import { PiStudentFill } from "react-icons/pi";
+import { MdDashboardCustomize } from "react-icons/md";
 import { Link } from "@remix-run/react";
 
 const data = [
@@ -43,7 +44,11 @@ export default function DashBoard() {
     return (
         <div className="flex flex-col items-start mt-36 ml-16">
             <div className="flex flex-col mb-4">
-                <h1 className="justify-between items-center font-semibold text-3xl" style={{ color: '#1D1856' }}>Gestión Administrativa</h1>
+                <div className="flex items-center space-x-4">
+                    <MdDashboardCustomize size={48} className="text-[#2C395B]" />
+                    <h1 className="justify-between items-center font-semibold text-3xl" style={{ color: '#1D1856' }}>Gestión Administrativa</h1>
+                </div>
+                
                 <small className='text-gray-600 mt-2 text-2xl'>Gestiona y administra de manera eficiente la información administrativa y recursos del sistema.</small>
             </div>
             <div className="flex flex-row justify-center items-center flex-wrap mx-auto mb-6">
