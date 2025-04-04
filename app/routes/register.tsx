@@ -6,13 +6,13 @@ import GridRegister from "~/components/GridRegister";
 import Header from "~/components/Header";
 
 
-export default function Register(){
-    return(
+export default function Register() {
+    return (
         <div>
-            <Header></Header>  
+            <Header></Header>
             <FormRegister></FormRegister>
             <GridRegister></GridRegister>
-            
+
         </div>
     )
 }

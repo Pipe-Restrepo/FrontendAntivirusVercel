@@ -25,8 +25,8 @@ export const action = async ({ request }: { request: Request }) => {
       status: result.error ? 401 : 200,
       headers: result.token
         ? {
-            "Set-Cookie": `token=${result.token}; HttpOnly; Path=/;, rol=${result.rol}; HttpOnly; Path=/;`,
-          }
+          "Set-Cookie": `token=${result.token}; HttpOnly; Path=/;, rol=${result.rol}; HttpOnly; Path=/;`,
+        }
         : {},
     }
   );
@@ -55,16 +55,15 @@ export default function Login() {
 
       fetch("http://localhost:5282/api/Users/login", {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       })
         .then((res) => res.json())
         .then((userData) => {
-            if (userData.id)
-            {
-                localStorage.setItem("user", JSON.stringify(userData));//guarda el usuario
-            }
-            window.location.href = "/login"
+          if (userData.id) {
+            localStorage.setItem("user", JSON.stringify(userData));//guarda el usuario
+          }
+          window.location.href = "/login"
         })
         .catch(() => {
           Swal.fire({

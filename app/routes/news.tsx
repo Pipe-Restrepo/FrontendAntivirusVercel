@@ -12,7 +12,7 @@ import { LuNotebookPen } from "react-icons/lu";
 export const loader: LoaderFunction = async ({ request }) => {
   try {
     const opportunities = await api("/Opportunities", "GET", undefined, {}, request);
-    console.log ("impimientdo oportunities" + opportunities)
+    console.log("imprimiendo oportunities" + opportunities)
 
     if (!opportunities || !Array.isArray(opportunities)) {
       console.error("Error: La API no devolvió un array válido.", opportunities);
@@ -56,21 +56,21 @@ export default function News() {
     const opportunityDate = opportunity.adicional_dates ? new Date(opportunity.adicional_dates) : null;
     const start = filters.startDate ? new Date(filters.startDate) : null;
     const end = filters.endDate ? new Date(filters.endDate) : null;
-  
+
     return (
       (filters.searchName === "" || opportunity.name.toLowerCase().includes(filters.searchName.toLowerCase())) &&
       (filters.searchUbication === "" ||
         (opportunity.institution?.ubication || "").toLowerCase().includes(filters.searchUbication.toLowerCase())) &&
       (filters.searchType === "" || opportunity.type.toLowerCase().includes(filters.searchType.toLowerCase())) &&
-      (!opportunityDate || 
-        (!start || opportunityDate >= start) && 
+      (!opportunityDate ||
+        (!start || opportunityDate >= start) &&
         (!end || opportunityDate <= end))
     );
   });
 
   return (
     <div className="flex flex-col gap-7 items-center justify-center p-px sp ">
-       <div className="bg-white w-full h-7 "></div> {/* para la cabecera */}
+      <div className="bg-white w-full h-7 "></div> {/* para la cabecera */}
       <div className="flex flex-col mb-4 self-start text-left w-3/4 ml-48">
         <div className="flex items-center space-x-4 mt-12">
           <LuNotebookPen size={48} className="text-[#2C395B]" />
@@ -88,11 +88,11 @@ export default function News() {
       <Filters onFilterChange={setFilters} />
 
       <div className="flex flex-col mb-4">
-          <div className="flex items-center space-x-4">
-              <PiStudentFill size={48} className="text-[#2C395B]" />
-              <h1 className="font-semibold text-3xl text-[#1D1856]">¡Oportunidades Para Estudiar!</h1>
-          </div>
-          <small className='text-gray-600 mt-2 text-2xl'> Descubre nuevas oportunidades para estudiar y accede a becas, cursos y bootcamps que impulsarán tu futuro académico.</small>
+        <div className="flex items-center space-x-4">
+          <PiStudentFill size={48} className="text-[#2C395B]" />
+          <h1 className="font-semibold text-3xl text-[#1D1856]">¡Oportunidades Para Estudiar!</h1>
+        </div>
+        <small className='text-gray-600 mt-2 text-2xl'> Descubre nuevas oportunidades para estudiar y accede a becas, cursos y bootcamps que impulsarán tu futuro académico.</small>
       </div>
 
       {/* Oportunidades filtradas */}
