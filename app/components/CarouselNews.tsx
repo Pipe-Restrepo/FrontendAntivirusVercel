@@ -20,31 +20,31 @@ export default function Carousel() {
     { name: "Carlos Slim", img: "/assets/carousel/carlosSlim.jpg" },
   ];
   return (
-    
+
     <Swiper
       modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-      
+
       slidesPerView={"auto"}
       navigation
       pagination={{ clickable: true }}
       autoplay={{ delay: 3000, disableOnInteraction: false }}
       effect="coverflow"
       grabCursor={true}
-        centeredSlides={true}
-        
-        coverflowEffect={{
-          rotate: 20,
-          stretch: 800,
-          depth: 200,
-          modifier: 1,
-          slideShadows: false,
-        }}
-        
+      centeredSlides={true}
+
+      coverflowEffect={{
+        rotate: 20,
+        stretch: 800,
+        depth: 200,
+        modifier: 1,
+        slideShadows: false,
+      }}
+
     >
       {items.map((Item, index) => (
         <SwiperSlide key={index} >
           <div className=" flex h-full justify-center rounded-xl">
-          <img src={Item.img} alt={`Slide ${index + 1}`} className="border-2 w-auto h-full rounded-2xl object-fill" />
+            <img src={Item.img} alt={`Slide ${index + 1}`} className="border-2 w-auto h-full rounded-2xl object-fill" />
           </div>
         </SwiperSlide>
       ))}

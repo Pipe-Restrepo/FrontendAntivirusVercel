@@ -79,8 +79,8 @@ const Footer = () => {
           />
         </a>
 
-          {/* WhatsApp */}
-              <a
+        {/* WhatsApp */}
+        <a
           href="https://wa.me/573217066273"
           target="_blank"
           rel="noopener noreferrer"
@@ -94,7 +94,7 @@ const Footer = () => {
           />
         </a>
 
-        </div>
+      </div>
 
       {/* Se crea container de derechos de autor */}
 

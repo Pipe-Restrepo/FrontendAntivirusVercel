@@ -10,7 +10,7 @@ export async function api(
     body?: object,
     headers: HeadersInit = {},
     request?: Request
-    ) {
+) {
     const url = `${API_BASE_URL}${endpoint}`;
     const token = request ? await getCookie(request, "token") : null;
 
@@ -22,17 +22,17 @@ export async function api(
             ...headers,
         },
         body: body ? JSON.stringify(body) : undefined,
-        };
-    
-    try {
-    const response = await fetch(url, options);
-    const data = await response.json();
-    if (!response.ok) {
-        throw new Error(data?.message || "Error en la solicitud");
-    }
+    };
 
-    return data;
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data?.message || "Error en la solicitud");
+        }
+
+        return data;
     } catch (error: any) {
-    return { error: error.message };
+        return { error: error.message };
     }
 }

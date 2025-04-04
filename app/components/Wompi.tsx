@@ -50,7 +50,7 @@ export default function FloatingWompiButton() {
                 <span
                     className="ml-16 text-lg transition-opacity duration-300 whitespace-nowrap"
                     style={{
-                        opacity: expanded ? 1 : 0, 
+                        opacity: expanded ? 1 : 0,
                         width: expanded ? "auto" : "0px",
                     }}
                 >

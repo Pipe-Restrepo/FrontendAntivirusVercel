@@ -35,7 +35,7 @@ const OurTeam: React.FC = () => {
                         <div key={index} className="relative group overflow-hidden rounded-xl">
                             {/* Imagen */}
                             <img src={member.url} alt={member.name} className="w-80 h-160 object-cover rounded-xl transition-transform duration-300 group-hover:scale-105" />
-                            
+
                             {/* Capa de fondo con animación */}
                             <div className="absolute inset-0 bg-yellow-400/70 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
                             </div>
@@ -62,11 +62,11 @@ const OurTeam: React.FC = () => {
                     <div className="section mb-8">
                         <h2 className="text-2xl font-bold text-[#1D1856] mb-4 dark:text-[#12a6e8]">VISIÓN</h2>
                         <p className="text-gray-700 dark:text-[#a8afc4]">En 5 años vamos a tener presencia a nivel nacional, en las 10 mejores universidades del país, donde habremos disminuido la tasa de deserción en 10 puntos porcentuales (del 50 al 40%). Además, vamos a estar replicando un modelo que es referente, cuyo éxito se puede medir cualitativa y cuantitativamente.</p></div>
-                    </div>
-                    <div className="column1"><div _ngcontent-ng-c3234427010="" className="section mb-8">
-                        <h2 className="text-2xl font-bold text-[#1D1856] mb-4 dark:text-[#12a6e8]">VALORES</h2>
-                        <p className="text-gray-700 dark:text-[#a8afc4]">En la Fundación Antivirus para la Deserción hacemos nuestro trabajo de forma colaborativa, con pasión, integridad, autonomía, empatía, compromiso y compañerismo. Somos solidarios e innovadores y tenemos una gran vocación de servicio.</p>
-                    </div>
+                </div>
+                <div className="column1"><div _ngcontent-ng-c3234427010="" className="section mb-8">
+                    <h2 className="text-2xl font-bold text-[#1D1856] mb-4 dark:text-[#12a6e8]">VALORES</h2>
+                    <p className="text-gray-700 dark:text-[#a8afc4]">En la Fundación Antivirus para la Deserción hacemos nuestro trabajo de forma colaborativa, con pasión, integridad, autonomía, empatía, compromiso y compañerismo. Somos solidarios e innovadores y tenemos una gran vocación de servicio.</p>
+                </div>
                     <div className="section mb-8">
                         <h2 className="text-2xl font-bold text-[#1D1856] mb-4 dark:text-[#12a6e8]">PROPÓSITO</h2>
                         <p className="text-gray-700 dark:text-[#a8afc4]">Construir un país próspero, pacífico, armonioso, tecnológico y competitivo, en el cual todos los jóvenes tienen acceso a la educación y son buenos seres humanos, con metas y empoderados de sus vidas. Gracias a esto, lograremos superar la pobreza y nos convertiremos en un referente de desarrollo.</p>

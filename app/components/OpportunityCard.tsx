@@ -34,7 +34,7 @@ export default function OpportunityCard({
   const [showModal, setShowModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteId, setFavoriteId] = useState<number | null>(null); // Guarda el ID en caso de existir
-  
+
   //consulta el Back para saber si la oportunidad ya es favorita y actualiza el estado de isFavorite
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -52,7 +52,7 @@ export default function OpportunityCard({
         },
       }
     )
-      .then(async (res) => { 
+      .then(async (res) => {
         if (res.status === 404) {
           return null; // Si el backend retorna 404, tomamos valor null
         }
@@ -64,11 +64,10 @@ export default function OpportunityCard({
         }
       })
       .then((data) => {
-        if (data !== null)
-        {
-          setIsFavorite(true); 
+        if (data !== null) {
+          setIsFavorite(true);
           setFavoriteId(data.id); // guardamos el ID de la relacion
-        }else{
+        } else {
           setIsFavorite(false);
           setFavoriteId(null);
         }
@@ -80,22 +79,22 @@ export default function OpportunityCard({
   //logica para guardar la oportunidad y eliminar
   const handleToggleFavorite = async (e: React.MouseEvent) => {
     e.stopPropagation(); // Evita propagación del clic
-  
+
     const userData = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     if (!userData || !token) {
       console.error("Usuario no autenticado");
       return;
     }
-  
+
     const { id: user_id } = JSON.parse(userData); // Extrae ID del usuario
     const url = "http://localhost:5282/api/UserOpportunities";
-  
+
     const requestData = {
       user_id,
       opportunity_id: opportunity.id,
     };
-  
+
     try {
       let response;
       if (isFavorite && favoriteId !== null) {
@@ -106,7 +105,7 @@ export default function OpportunityCard({
             Authorization: `Bearer ${token}`,
           },
         });
-  
+
         if (response.ok) {
           setIsFavorite(false);
           setFavoriteId(null);
@@ -121,7 +120,7 @@ export default function OpportunityCard({
           },
           body: JSON.stringify(requestData),
         });
-  
+
         if (response.ok) {
           const data = await response.json(); // Obtiene el ID de la nueva relación
           setIsFavorite(true);
@@ -133,7 +132,7 @@ export default function OpportunityCard({
     }
   };
 
-  
+
   const handleOpenModal = () => {
     setShowModal(true);
   };

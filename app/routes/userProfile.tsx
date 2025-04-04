@@ -62,15 +62,15 @@ export default function UserProfile() {
 
   return (
     <div className="flex flex-col gap-7 items-center justify-center p-10 sp">
-     <div className="bg-white w-full h-7 "></div> {/*para la cabecera */}
+      <div className="bg-white w-full h-7 "></div> {/*para la cabecera */}
       <div className="flex flex-col self-start text-left w-3/4 mt-10 ml-10">
-          <div className="flex items-center space-x-4">
-              <FaStar size={48} className="text-[#2C395B]" />
-              <h1 className="font-semibold text-3xl text-[#1D1856]">Mis Favoritos</h1>
-          </div>
-          <small className='text-gray-600 mt-2 text-2xl'>Encuentra y accede rápidamente a las oportunidades educativas que has guardado como favoritas.</small>
+        <div className="flex items-center space-x-4">
+          <FaStar size={48} className="text-[#2C395B]" />
+          <h1 className="font-semibold text-3xl text-[#1D1856]">Mis Favoritos</h1>
+        </div>
+        <small className='text-gray-600 mt-2 text-2xl'>Encuentra y accede rápidamente a las oportunidades educativas que has guardado como favoritas.</small>
       </div>
-      
+
       <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-10 w-full p-2 mb-4">
         {opportunities.length > 0 ? (
           opportunities.map((opportunity) => (
@@ -83,7 +83,7 @@ export default function UserProfile() {
           <p className="col-span-full text-3xl text-center p-10">No tienes oportunidades guardadas.</p>
         )}
       </div>
-      
+
     </div>
   );
 }
