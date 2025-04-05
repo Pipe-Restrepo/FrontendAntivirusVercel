@@ -12,10 +12,8 @@ import { LuNotebookPen } from "react-icons/lu";
 export const loader: LoaderFunction = async ({ request }) => {
   try {
     const opportunities = await api("/Opportunities", "GET", undefined, {}, request);
-    console.log("imprimiendo oportunities" + opportunities)
-
+    
     if (!opportunities || !Array.isArray(opportunities)) {
-      console.error("Error: La API no devolvió un array válido.", opportunities);
       return json([]);
     }
 
