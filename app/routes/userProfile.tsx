@@ -16,12 +16,8 @@ export default function UserProfile() {
 
       if (storedUser) {
         const parsedUser = JSON.parse(storedUser);
-        console.log("Imprimiendo el valor de parsedUser:", parsedUser);
+        
         setUserId(parsedUser.id?.toString() || null); // Aquí asignamos el userId
-        console.log(
-          "Imprimiendo el valor de setUserId:",
-          parsedUser.id?.toString()
-        );
       }
     }, 200);
   }, []);
