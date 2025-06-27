@@ -1,11 +1,8 @@
 {
+  "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "build/client",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  "framework": "remix"
 }
