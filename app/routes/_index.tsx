@@ -5,26 +5,38 @@ import Inicio from "~/components/Inicio";
 import Oportunity from "~/components/Oportunity";
 import { Services } from "~/components/Services";
 
+type Respuesta = { error?: string } | Record<string, unknown> | null;
 
 export default function Index() {
   const [searchParams] = useSearchParams();
   const servicesRef = useRef<HTMLDivElement>(null);
   const opotunitysRef = useRef<HTMLDivElement>(null);
-  const [respuesta, setRespuesta] = useState(null);
+  const [respuesta, setRespuesta] = useState<Respuesta>(null);
 
 
-    useEffect(() => {
-    const fetchPing = async () => {
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/test/ping`);
-        const data = await res.json();
-        setRespuesta(data);
-      } catch (err) {
-        console.error("❌ Error al llamar al backend:", err);
-      }
-    };
-    fetchPing();
-  }, []);
+useEffect(() => {
+  const fetchPing = async () => {
+    try {
+      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/test/ping`;
+      console.log("🌐 Probando URL:", url);
+
+      const res = await fetch(url);
+
+      const contentType = res.headers.get("content-type");
+      if (!res.ok) throw new Error(`Status: ${res.status}`);
+      if (!contentType?.includes("application/json")) throw new Error("❌ No es una respuesta JSON");
+
+      const data = await res.json();
+      setRespuesta(data);
+    } catch (err) {
+      console.error("❌ Error al llamar al backend:", err);
+      setRespuesta({ error: String(err) });
+    }
+  };
+
+  fetchPing();
+}, []);
+
 
   // Smooth scroll helper
   const smoothScrollTo = (element: HTMLElement) => {
@@ -70,7 +82,7 @@ export default function Index() {
         <h2>Ping desde el frontend</h2>
         <pre>{JSON.stringify(respuesta, null, 2)}</pre>
       </div>
-      <Header />
+      <Header isAuthenticated={false} />
       <Inicio />
       <div ref={opotunitysRef} className="w-full">
         <Oportunity />
