@@ -16,7 +16,7 @@ export default function Index() {
     useEffect(() => {
     const fetchPing = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/test/ping`);
+        const res = await fetch(`${process.env.VITE_API_BASE_URL}/api/test/ping`);
         const data = await res.json();
         setRespuesta(data);
       } catch (err) {
