@@ -33,7 +33,7 @@ useEffect(() => {
       const data = await res.json();
       setRespuesta(data);
     } catch (err) {
-      console.error("❌ Error al llamar al backend:", err);
+      console.error("Error al llamar al backend:", err);
       setRespuesta({ error: String(err) });
     }
   };
