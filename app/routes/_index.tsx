@@ -24,7 +24,7 @@ useEffect(() => {
 
       const contentType = res.headers.get("content-type");
       if (!res.ok) throw new Error(`Status: ${res.status}`);
-      if (!contentType?.includes("application/json")) throw new Error("❌ No es una respuesta JSON");
+      if (!contentType?.includes("application/json")) throw new Error("No es una respuesta JSON");
 
       const data = await res.json();
       setRespuesta(data);
