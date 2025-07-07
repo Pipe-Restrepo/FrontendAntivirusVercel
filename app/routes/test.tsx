@@ -6,7 +6,7 @@ import { apiClient } from '../utils/api.client';
 import { handleApiError, getErrorMessage } from '~/utils/error-handler';
 
 // Loader para probar la conexión desde el servidor
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader() {
   try {
     console.log('Testing API connection from server...');
     const response = await apiClient.ping();
@@ -148,3 +148,5 @@ export default function TestPage() {
         </ul>
       </div>
     </div>
+  );
+}
