@@ -1,4 +1,4 @@
-import { useEffect, useRef,useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useSearchParams } from "@remix-run/react";
 import Header from "~/components/Header";
 import Inicio from "~/components/Inicio";
@@ -39,7 +39,7 @@ useEffect(() => {
 
 
   // Smooth scroll helper
-  const smoothScrollTo = (element: HTMLElement) => {
+  const smoothScrollTo = useCallback((element: HTMLElement) => {
     const targetPosition = element.getBoundingClientRect().top + window.scrollY;
     const startPosition = window.scrollY;
     const distance = targetPosition - startPosition;
@@ -58,7 +58,7 @@ useEffect(() => {
     };
 
     requestAnimationFrame(animation);
-  };
+  }, []);
 
   const easeInOutQuad = (t: number) => {
     return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
@@ -68,13 +68,13 @@ useEffect(() => {
     if (searchParams.has("services") && servicesRef.current) {
       smoothScrollTo(servicesRef.current);
     }
-  }, [searchParams]);
+  }, [searchParams, smoothScrollTo]);
 
   useEffect(() => {
     if (searchParams.has("oportunities") && opotunitysRef.current) {
       smoothScrollTo(opotunitysRef.current);
     }
-  }, [searchParams]);
+  }, [searchParams, smoothScrollTo]);
 
   return (
     <div className="flex flex-col justify-center items-center">
