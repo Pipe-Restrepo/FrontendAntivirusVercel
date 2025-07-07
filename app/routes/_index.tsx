@@ -1,27 +1,32 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef,useState } from "react";
 import { useSearchParams } from "@remix-run/react";
 import Header from "~/components/Header";
 import Inicio from "~/components/Inicio";
 import Oportunity from "~/components/Oportunity";
 import { Services } from "~/components/Services";
 
+
 export default function Index() {
   const [searchParams] = useSearchParams();
   const servicesRef = useRef<HTMLDivElement>(null);
   const opotunitysRef = useRef<HTMLDivElement>(null);
+  const [respuesta, setRespuesta] = useState(null);
 
-  useEffect(() => {
-    if (searchParams.has("services") && servicesRef.current) {
-      smoothScrollTo(servicesRef.current);
-    }
-  }, [searchParams]);
 
-  useEffect(() => {
-    if (searchParams.has("oportunities") && opotunitysRef.current) {
-      smoothScrollTo(opotunitysRef.current);
-    }
-  }, [searchParams]);
+    useEffect(() => {
+    const fetchPing = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/test/ping`);
+        const data = await res.json();
+        setRespuesta(data);
+      } catch (err) {
+        console.error("❌ Error al llamar al backend:", err);
+      }
+    };
+    fetchPing();
+  }, []);
 
+  // Smooth scroll helper
   const smoothScrollTo = (element: HTMLElement) => {
     const targetPosition = element.getBoundingClientRect().top + window.scrollY;
     const startPosition = window.scrollY;
@@ -47,8 +52,24 @@ export default function Index() {
     return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
   };
 
+  useEffect(() => {
+    if (searchParams.has("services") && servicesRef.current) {
+      smoothScrollTo(servicesRef.current);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (searchParams.has("oportunities") && opotunitysRef.current) {
+      smoothScrollTo(opotunitysRef.current);
+    }
+  }, [searchParams]);
+
   return (
     <div className="flex flex-col justify-center items-center">
+      <div>
+        <h2>Ping desde el frontend</h2>
+        <pre>{JSON.stringify(respuesta, null, 2)}</pre>
+      </div>
       <Header />
       <Inicio />
       <div ref={opotunitysRef} className="w-full">
