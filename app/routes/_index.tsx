@@ -17,12 +17,16 @@ export default function Index() {
 useEffect(() => {
   const fetchPing = async () => {
     try {
+      if (!process.env.NEXT_PUBLIC_API_BASE_URL) {
+        throw new Error("NEXT_PUBLIC_API_BASE_URL no está definido");
+      }
+      
       const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/test/ping`;
       console.log("🌐 Probando URL:", url);
 
       const res = await fetch(url);
-
       const contentType = res.headers.get("content-type");
+      
       if (!res.ok) throw new Error(`Status: ${res.status}`);
       if (!contentType?.includes("application/json")) throw new Error("No es una respuesta JSON");
 
