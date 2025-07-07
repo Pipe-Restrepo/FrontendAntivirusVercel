@@ -1,7 +1,18 @@
 {
-  "functions": {
-    "server.ts": {
-      "runtime": "@vercel/node@3.0.5"
+  "version": 2,
+  "builds": [
+    {
+      "src": "build/server/index.js",
+      "use": "@vercel/node@3.0.5"
     }
-  }
+  ],
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/build/server/index.js"
+    }
+  ]
 }
